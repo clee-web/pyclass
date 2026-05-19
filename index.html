@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyAcademy - Learn Python Professionally</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+    <!-- Screen: Auth -->
+    <div id="screen-auth" class="screen active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div style="text-align:center;margin-bottom:30px">
+                    <div style="font-size:56px;margin-bottom:8px">🐍</div>
+                    <h1 style="font-size:28px;font-weight:800;color:var(--text-primary);margin-bottom:6px;letter-spacing:-0.03em">PyAcademy</h1>
+                    <p style="color:var(--text-muted);font-size:14px;line-height:1.6">Master Python from first program to production backend thinking with interactive lessons, examples, notes, and an AI tutor.</p>
+                </div>
+                <div style="display:flex;border-bottom:1px solid var(--border);margin-bottom:26px">
+                    <div class="tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</div>
+                    <div class="tab" id="tab-signup" onclick="switchAuthTab('signup')">Create Account</div>
+                </div>
+                <div id="auth-login">
+                    <div style="display:flex;flex-direction:column;gap:16px">
+                        <div><label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+                        </div>
+                        <div><label for="login-pass">Password</label>
+                            <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password" />
+                        </div>
+                        <button class="btn" onclick="login()" style="width:100%;margin-top:6px;justify-content:center">Sign In</button>
+                        <div class="err-text" id="login-err" style="color:#ef4444;font-size:13px;text-align:center;display:none"></div>
+                    </div>
+                </div>
+                <div id="auth-signup" style="display:none">
+                    <div style="display:flex;flex-direction:column;gap:16px">
+                        <div><label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" placeholder="Alex Johnson" autocomplete="name" /></div>
+                        <div><label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" /></div>
+                        <div><label for="signup-pass">Password</label>
+                            <input type="password" id="signup-pass" placeholder="Min 6 characters" autocomplete="new-password" /></div>
+                        <button class="btn" onclick="signup()" style="width:100%;margin-top:6px;justify-content:center">Create Account</button>
+                        <div class="err-text" id="signup-err" style="color:#ef4444;font-size:13px;text-align:center;display:none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen: Dashboard -->
+    <div id="screen-dashboard" class="screen">
+        <nav class="navbar">
+            <div style="display:flex;align-items:center;gap:12px">
+                <div style="font-size:24px">🐍</div>
+                <div style="font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-0.03em">PyAcademy</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <div id="user-xp" class="xp-badge">0 XP</div>
+                <button class="avatar" id="user-avatar" onclick="logout()" title="Sign out">A</button>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="profile-card">
+                <div id="level-ring" class="level-ring">1</div>
+                <div style="flex:1">
+                    <div style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:3px" id="welcome-name">Welcome!</div>
+                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px" id="level-label">Level 1 - Beginner</div>
+                    <div class="progress-bar"><div class="progress-fill" id="xp-bar" style="width:0%"></div></div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-top:5px" id="xp-label">0 / 100 XP to next level</div>
+                </div>
+            </div>
+            <div class="tabs">
+                <div class="tab active" onclick="showDashTab('modules',this)">Curriculum</div>
+                <div class="tab" onclick="showDashTab('ai',this)">AI Tutor</div>
+                <div class="tab" onclick="showDashTab('sandbox',this)">Sandbox</div>
+                <div class="tab" onclick="showDashTab('achievements',this)">Achievements</div>
+            </div>
+            <div id="tab-modules" class="tab-content active">
+                <p class="section-subtitle">Work through Python step by step, from first program to production-grade backend concepts.</p>
+                <div id="modules-list" style="display:flex;flex-direction:column;gap:14px"></div>
+            </div>
+            <div id="tab-ai" class="tab-content">
+                <div class="chat-box">
+                    <div id="chat-messages">
+                        <div class="ai-bubble">Hi, I am your Python tutor. Ask me about syntax, debugging, or concepts.</div>
+                    </div>
+                    <div class="chat-input-row">
+                        <textarea id="chat-input" placeholder="Ask about Python concepts, syntax, or debugging..." rows="1" style="min-height:44px;max-height:130px;resize:none;flex:1;padding:11px 14px;font-size:13px"></textarea>
+                        <button class="btn btn-sm" onclick="sendChat()">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-sandbox" class="tab-content">
+                <p class="section-subtitle">Try Python snippets and see simulated output instantly.</p>
+                <textarea id="sandbox-code" spellcheck="false" placeholder="# Write any Python code here&#10;print('Hello, World!')">print('Hello, World!')
+</textarea>
+                <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
+                    <button class="btn btn-sm" onclick="runSandbox()">Run Code</button>
+                    <button class="btn-outline btn-sm" onclick="clearSandbox()">Clear</button>
+                    <button class="btn-outline btn-sm" onclick="loadSandboxExample()">Load Example</button>
+                </div>
+                <div id="sandbox-output" class="output-box" style="display:none"></div>
+            </div>
+            <div id="tab-achievements" class="tab-content">
+                <p class="section-subtitle">Badges and milestones you have earned on your Python journey.</p>
+                <div id="achievements-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen: Lesson -->
+    <div id="screen-lesson" class="screen">
+        <nav class="navbar">
+            <button class="btn-outline btn-sm" onclick="goBack()">Back to Curriculum</button>
+            <div style="font-weight:700;font-size:15px;color:var(--text-primary);flex:1;text-align:center;padding:0 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="lesson-title-header">Lesson</div>
+            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+                <div class="progress-bar" style="width:100px"><div class="progress-fill" id="lesson-progress-bar" style="width:0%"></div></div>
+                <span id="lesson-step-label" style="font-size:12px;color:var(--text-muted);min-width:36px;font-weight:600">0/0</span>
+            </div>
+        </nav>
+        <div class="content">
+            <div id="lesson-content"></div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
