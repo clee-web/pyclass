@@ -1234,41 +1234,98 @@
 
     function hideErr(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
 
-    function signup() {
+    async function signup() {
         hideErr('signup-err');
         const name = document.getElementById('signup-name').value.trim();
         const email = document.getElementById('signup-email').value.trim();
         const pass = document.getElementById('signup-pass').value;
+        
         if (!name) return showErr('signup-err', 'Please enter your name.');
         if (!email.includes('@')) return showErr('signup-err', 'Enter a valid email address.');
         if (pass.length < 6) return showErr('signup-err', 'Password must be at least 6 characters.');
-        if (users[email]) return showErr('signup-err', 'An account with this email already exists.');
-        users[email] = { name, pass, xp: 0, completed: [], totalXP: 0 };
-        localStorage.setItem('pya_users', JSON.stringify(users));
-        currentUser = { email, ...users[email] };
-        // SAVE SESSION
-        localStorage.setItem('pya_current_user', email);
-        xp = 0;
-        totalXPEarned = 0;
-        enterCourse();
-        showScreen('dashboard');
+        
+        try {
+            // Create user in Supabase Auth
+            const { data: authData, error: authError } = await supabase.auth.signUp({
+                email,
+                password: pass,
+            });
+            
+            if (authError) throw authError;
+            if (!authData.user) throw new Error('Signup failed');
+            
+            // Save profile to Supabase users table
+            const { error: dbError } = await supabase.from('users').insert([
+                {
+                    id: authData.user.id,
+                    email,
+                    full_name: name,
+                    role: 'student',
+                }
+            ]);
+            
+            if (dbError) throw dbError;
+            
+            // Also keep in localStorage as backup
+            users[email] = { name, pass, xp: 0, completed: [], totalXP: 0, supabaseId: authData.user.id };
+            localStorage.setItem('pya_users', JSON.stringify(users));
+            
+            currentUser = { email, name, supabaseId: authData.user.id, ...users[email] };
+            localStorage.setItem('pya_current_user', email);
+            
+            xp = 0;
+            totalXPEarned = 0;
+            enterCourse();
+            showScreen('dashboard');
+        } catch (error) {
+            showErr('signup-err', 'Signup failed: ' + error.message);
+            console.error('Signup error:', error);
+        }
     }
 
-    function login() {
+    async function login() {
         hideErr('login-err');
         const email = document.getElementById('login-email').value.trim();
         const pass = document.getElementById('login-pass').value;
+        
         if (!email) return showErr('login-err', 'Enter your email.');
         if (!pass) return showErr('login-err', 'Enter your password.');
-        if (!users[email]) return showErr('login-err', 'No account found. Please sign up first.');
-        if (users[email].pass !== pass) return showErr('login-err', 'Incorrect password.');
-        currentUser = { email, ...users[email] };
-        // SAVE SESSION
-        localStorage.setItem('pya_current_user', email);
-        xp = currentUser.xp || 0;
-        totalXPEarned = currentUser.totalXP || xp;
-        enterCourse();
-        showScreen('dashboard');
+        
+        try {
+            // Try Supabase first
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password: pass,
+            });
+            
+            if (error) throw error;
+            if (!data.user) throw new Error('Login failed');
+            
+            // Get user profile
+            const { data: userProfile, error: profileError } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', data.user.id)
+                .single();
+            
+            if (profileError) console.warn('Profile fetch warning:', profileError);
+            
+            // Also check localStorage as backup
+            if (!users[email]) {
+                users[email] = { name: userProfile?.full_name || email, pass, xp: 0, completed: [], totalXP: 0 };
+            }
+            
+            currentUser = { email, supabaseId: data.user.id, ...users[email] };
+            localStorage.setItem('pya_current_user', email);
+            
+            xp = currentUser.xp || 0;
+            totalXPEarned = currentUser.totalXP || xp;
+            enterCourse();
+            showScreen('dashboard');
+        } catch (error) {
+            showErr('login-err', 'Login failed: ' + error.message);
+            console.error('Login error:', error);
+        }
     }
 
     function logout() {
