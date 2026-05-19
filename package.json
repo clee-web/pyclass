@@ -16,7 +16,11 @@
     "vite": "^7.2.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
+  },
+  "vercel": {
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
   }
 }
 
