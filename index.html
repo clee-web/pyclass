@@ -127,7 +127,12 @@
 
     <div id="toast-container"></div>
     <script type="module">
+      import { supabase } from '/src/supabase.js';
       import { initVercelAnalytics } from '/src/analytics.js';
+      
+      // Make supabase global so main.js can access it
+      window.supabase = supabase;
+      
       initVercelAnalytics();
     </script>
     <script type="module" src="/src/main.js"></script>
