@@ -6,6 +6,9 @@ CREATE TABLE users (
   full_name TEXT,
   avatar_url TEXT,
   role TEXT CHECK (role IN ('student', 'instructor', 'admin')) DEFAULT 'student',
+  xp INTEGER DEFAULT 0,
+  level INTEGER DEFAULT 1,
+  total_xp INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -102,3 +105,18 @@ CREATE POLICY "Students can view their progress" ON progress
 
 CREATE POLICY "Students can update their progress" ON progress
   FOR UPDATE USING (student_id = auth.uid());
+
+-- Global Leaderboard View
+CREATE OR REPLACE VIEW leaderboard AS
+SELECT
+  id,
+  full_name,
+  username,
+  xp,
+  level,
+  avatar_url
+FROM users
+ORDER BY xp DESC
+LIMIT 100;
+
+GRANT SELECT ON leaderboard TO authenticated, anon;

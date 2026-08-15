@@ -6,8 +6,18 @@
     <title>PyAcademy - Learn Python Professionally</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
     <link rel="stylesheet" href="/src/styles.css" />
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
 </head>
 <body>
+    <!-- Python Engine Loader -->
+    <div id="engine-loader" class="engine-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Initializing Python Engine...</div>
+            <div class="loader-subtext">Preparing your local engineering environment</div>
+        </div>
+    </div>
+
     <!-- Screen: Auth -->
     <div id="screen-auth" class="screen active">
         <div class="auth-container">
@@ -76,9 +86,14 @@
                 <div class="tab" onclick="showDashTab('ai',this)">AI Tutor</div>
                 <div class="tab" onclick="showDashTab('sandbox',this)">Sandbox</div>
                 <div class="tab" onclick="showDashTab('achievements',this)">Achievements</div>
+                <div class="tab" onclick="showDashTab('leaderboard',this)">Leaderboard</div>
             </div>
             <div id="tab-modules" class="tab-content active">
-                <p class="section-subtitle">Work through Python step by step, from first program to production-grade backend concepts.</p>
+                <div class="path-switcher" style="margin-bottom:20px;display:flex;gap:10px;background:var(--bg-secondary);padding:6px;border-radius:var(--radius-lg);width:fit-content">
+                    <button id="path-python" class="btn btn-sm" onclick="switchPath('python')" style="box-shadow:none">🐍 Python Master</button>
+                    <button id="path-web" class="btn-outline btn-sm" onclick="switchPath('web')" style="border-color:transparent">🌐 Web Engineer</button>
+                </div>
+                <p class="section-subtitle" id="path-desc">Work through Python step by step, from first program to production-grade backend concepts.</p>
                 <div id="modules-list" style="display:flex;flex-direction:column;gap:14px"></div>
             </div>
             <div id="tab-ai" class="tab-content">
@@ -93,19 +108,58 @@
                 </div>
             </div>
             <div id="tab-sandbox" class="tab-content">
-                <p class="section-subtitle">Try Python snippets and see simulated output instantly.</p>
-                <textarea id="sandbox-code" spellcheck="false" placeholder="# Write any Python code here&#10;print('Hello, World!')">print('Hello, World!')
-</textarea>
-                <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
-                    <button class="btn btn-sm" onclick="runSandbox()">Run Code</button>
-                    <button class="btn-outline btn-sm" onclick="clearSandbox()">Clear</button>
-                    <button class="btn-outline btn-sm" onclick="loadSandboxExample()">Load Example</button>
+                <p class="section-subtitle">A multi-file engineering environment with real-time variable inspection.</p>
+
+                <div class="sandbox-layout">
+                    <!-- File Explorer -->
+                    <div class="vfs-sidebar">
+                        <div class="vfs-header">
+                            <span>Files</span>
+                            <button class="btn-xs btn-outline" onclick="addNewFile()" title="New File">+</button>
+                        </div>
+                        <div id="vfs-list" class="vfs-list">
+                            <!-- Files populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Editor & Output -->
+                    <div style="display:flex;flex-direction:column;gap:12px">
+                        <div class="editor" style="flex:1;display:flex;flex-direction:column">
+                            <div class="editor-header">
+                                <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                                <span id="current-filename" style="margin-left:8px">main.py</span>
+                            </div>
+                            <textarea id="sandbox-code" spellcheck="false" style="flex:1" oninput="updateFileContent()"></textarea>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <button class="btn btn-sm" onclick="runSandbox()">Run Engine</button>
+                            <button class="btn-outline btn-sm" onclick="clearSandbox()">Clear Console</button>
+                            <button class="btn-outline btn-sm" onclick="loadSandboxExample()">Restore Example</button>
+                        </div>
+                        <div id="sandbox-output" class="output-box" style="display:none;max-height:150px;overflow-y:auto"></div>
+                        <div id="web-preview-container" style="display:none;flex:1;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:#fff;min-height:300px">
+                            <iframe id="web-preview" style="width:100%;height:100%;border:none"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Inspector -->
+                    <div class="inspector-panel">
+                        <div class="inspector-header">Variable Inspector</div>
+                        <div id="inspector-content" class="inspector-content">
+                            <div style="color:var(--text-muted);font-style:italic">Run code to see variables.</div>
+                        </div>
+                    </div>
                 </div>
-                <div id="sandbox-output" class="output-box" style="display:none"></div>
             </div>
             <div id="tab-achievements" class="tab-content">
                 <p class="section-subtitle">Badges and milestones you have earned on your Python journey.</p>
                 <div id="achievements-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
+            </div>
+            <div id="tab-leaderboard" class="tab-content">
+                <p class="section-subtitle">Global rankings of top Python learners across the platform.</p>
+                <div id="leaderboard-list" style="display:flex;flex-direction:column;gap:8px">
+                    <!-- Leaderboard populated by JS -->
+                </div>
             </div>
         </div>
     </div>
