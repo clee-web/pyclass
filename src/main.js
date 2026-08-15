@@ -1,4 +1,4 @@
-/* ==========================================
+﻿/* ==========================================
        STATE
    ========================================== */
     let users = JSON.parse(localStorage.getItem('pya_users') || '{}');
@@ -7,6 +7,9 @@
     let currentLessonIdx = 0;
     let currentStepIdx = 0;
     let selectedOption = null;
+    let codeChallengeSolved = false;
+    let currentScreen = 'dashboard';
+    const COURSE_STATE_KEY = 'pya_course_state';
     let xp = 0;
     let totalXPEarned = 0;
     let leaderboardData = [];
@@ -111,6 +114,7 @@ get_clean_globals()
     }
 
     updateLessonMaps();
+    currentLessonIdx = 0;
 
     function repairText(value) {
         if (typeof value !== 'string' || !/[ÃÂâðŸÎ]/.test(value)) return value;
@@ -318,9 +322,45 @@ get_clean_globals()
         showScreen('dashboard');
     }
 
+    function saveCourseState() {
+        const state = {
+            currentPath,
+            currentModuleIdx,
+            currentLessonIdx,
+            currentStepIdx,
+            currentScreen,
+            savedAt: Date.now()
+        };
+        localStorage.setItem(COURSE_STATE_KEY, JSON.stringify(state));
+    }
+
+    function restoreCourseState() {
+        try {
+            const raw = localStorage.getItem(COURSE_STATE_KEY);
+            if (!raw) return;
+            const state = JSON.parse(raw);
+            if (state.currentPath && PATH_DATA[state.currentPath]) {
+                currentPath = state.currentPath;
+                updateLessonMaps();
+                const pythonBtn = document.getElementById('path-python');
+                const webBtn = document.getElementById('path-web');
+                if (pythonBtn) pythonBtn.className = currentPath === 'python' ? 'btn btn-sm' : 'btn-outline btn-sm';
+                if (webBtn) webBtn.className = currentPath === 'web' ? 'btn btn-sm' : 'btn-outline btn-sm';
+            }
+
+            if (Number.isInteger(state.currentModuleIdx)) currentModuleIdx = state.currentModuleIdx;
+            if (Number.isInteger(state.currentLessonIdx)) currentLessonIdx = Math.min(state.currentLessonIdx, ALL_LESSONS.length - 1);
+            if (Number.isInteger(state.currentStepIdx)) currentStepIdx = Math.max(0, state.currentStepIdx);
+            if (state.currentScreen) currentScreen = state.currentScreen;
+        } catch (_) {
+            localStorage.removeItem(COURSE_STATE_KEY);
+        }
+    }
+
     function switchPath(path) {
         currentPath = path;
         updateLessonMaps();
+        saveCourseState();
 
         // Update UI buttons
         document.getElementById('path-python').className = path === 'python' ? 'btn btn-sm' : 'btn-outline btn-sm';
@@ -340,9 +380,11 @@ get_clean_globals()
 
     /* ── SCREENS ── */
     function showScreen(s) {
+        currentScreen = s;
         document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
         const target = document.getElementById('screen-' + s);
         if (target) target.classList.add('active');
+        saveCourseState();
     }
 
     /* ── DASHBOARD TABS ── */
@@ -458,9 +500,20 @@ get_clean_globals()
     }
 
     /* ── MODULE RENDERING ── */
+    function getFirstActiveModuleIndex() {
+        const completed = users[currentUser?.email]?.completed || [];
+        for (let i = 0; i < MODULES.length; i++) {
+            const modStartIdx = MODULES.slice(0, i).reduce((acc, mod) => acc + mod.lessons.length, 0);
+            const hasUnfinished = MODULES[i].lessons.some((_, li) => !completed.includes(modStartIdx + li));
+            if (hasUnfinished) return i;
+        }
+        return 0;
+    }
+
     function renderModules() {
         const completed = users[currentUser?.email]?.completed || [];
         const allLessonIndices = completed;
+        const firstActiveModuleIndex = getFirstActiveModuleIndex();
         const html = MODULES.map((mod, mi) => {
             const modLessonCount = mod.lessons.length;
             const modStartIdx = MODULES.slice(0, mi).reduce((acc, m) => acc + m.lessons.length, 0);
@@ -472,6 +525,7 @@ get_clean_globals()
                 const sIdx = MODULES.slice(0, mi2).reduce((a, mm) => a + mm.lessons.length, 0);
                 return m.lessons.some((_, li) => !allLessonIndices.includes(sIdx + li));
             });
+            const isStartHere = mi === firstActiveModuleIndex && !modComplete;
             return `
             <div class="module-card ${modComplete ? 'completed' : ''} ${isLocked ? 'locked' : ''}" onclick="${isLocked ? '' : `toggleModule(${mi}, this)`}" style="cursor:${isLocked ? 'not-allowed' : 'pointer'};opacity:${isLocked ? '0.5' : '1'}">
               <div style="display:flex;align-items:center;gap:16px">
@@ -481,6 +535,7 @@ get_clean_globals()
                     <span style="font-size:16px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em">${mod.title}</span>
                     <span class="badge badge-${mod.badge}">${mod.badge}</span>
                     ${modComplete ? '<span class="badge badge-completed">✓ Complete</span>' : ''}
+                    ${isStartHere ? '<span class="badge badge-completed" style="background:rgba(59,130,246,0.12);color:#7dd3fc;border-color:rgba(125,211,252,0.35)">Start here</span>' : ''}
                     ${isLocked ? '<span style="font-size:12px;color:var(--text-muted)">🔒</span>' : ''}
                   </div>
                   <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;line-height:1.5">${mod.description}</p>
@@ -567,8 +622,10 @@ get_clean_globals()
         currentLessonIdx = globalIdx;
         currentStepIdx = 0;
         selectedOption = null;
+        codeChallengeSolved = false;
         document.getElementById('lesson-title-header').textContent = mapped.lesson.title;
         showScreen('lesson');
+        saveCourseState();
         renderStep();
     }
 
@@ -596,6 +653,8 @@ get_clean_globals()
         const total = lesson.steps.length;
         const pct = Math.round((currentStepIdx / total) * 100);
         selectedOption = null;
+        codeChallengeSolved = false;
+        saveCourseState();
 
         document.getElementById('lesson-progress-bar').style.width = pct + '%';
         document.getElementById('lesson-step-label').textContent = (currentStepIdx + 1) + '/' + total;
@@ -644,6 +703,7 @@ get_clean_globals()
     function nextStep() {
         const lesson = getCurrentLesson();
         currentStepIdx++;
+        saveCourseState();
         if (currentStepIdx >= lesson.steps.length) {
             completeLesson();
         } else {
@@ -659,6 +719,7 @@ get_clean_globals()
         if (!completed.includes(currentLessonIdx)) completed.push(currentLessonIdx);
         users[currentUser.email].completed = completed;
         localStorage.setItem('pya_users', JSON.stringify(users));
+        saveCourseState();
 
         document.getElementById('lesson-progress-bar').style.width = '100%';
         document.getElementById('lesson-step-label').textContent = 'Done! 🎉';
@@ -715,7 +776,14 @@ get_clean_globals()
     /* ── CODE RUNNER ── */
 
     async function runLessonCode() {
-        const code = document.getElementById('code-editor').value;
+        const code = document.getElementById('code-editor');
+        if (!code) return;
+
+        if (codeChallengeSolved) {
+            document.getElementById('next-btn').style.display = 'inline-block';
+            return;
+        }
+
         const lesson = getCurrentLesson();
         const step = lesson.steps[currentStepIdx];
         const out = document.getElementById('run-output');
@@ -724,10 +792,10 @@ get_clean_globals()
 
         let result = '';
         if (currentPath === 'python') {
-            const { output } = await runPython(code);
+            const { output } = await runPython(code.value);
             result = output;
         } else {
-            result = code; // For web, we show the code snippet in the console as "rendered"
+            result = code.value;
         }
 
         out.innerHTML = '<span style="color:#4ade80">> ' + result.replace(/\n/g, '<br>> ') + '</span>';
@@ -735,12 +803,10 @@ get_clean_globals()
         let passed = false;
         const exp = step.expected;
         const resultLower = result.toLowerCase();
-
-        // Generic validation logic:
-        // Does the output (or code for web) contain the expected snippet?
         passed = resultLower.includes(exp.toLowerCase());
 
         if (passed) {
+            codeChallengeSolved = true;
             out.innerHTML += '\n\n<span style="color:#86efac;font-weight:600">✅ Correct! Great job! +3 bonus XP</span>';
             document.getElementById('next-btn').style.display = 'inline-block';
             addXP(3);
@@ -977,12 +1043,14 @@ get_clean_globals()
         deleteFile
     });
 
-    // Auto-expand first module on dashboard if lessons exist
+    // Auto-open the first active module so new learners start at the correct entry point without feeling lost.
     setTimeout(() => {
-        const firstModule = document.querySelector('.module-card');
-        if (firstModule && !firstModule.classList.contains('locked') && document.getElementById(
+        const modules = document.querySelectorAll('.module-card');
+        const firstActiveModule = getFirstActiveModuleIndex();
+        const targetModule = modules[firstActiveModule];
+        if (targetModule && !targetModule.classList.contains('locked') && document.getElementById(
                 'screen-dashboard').classList.contains('active')) {
-            // Don't auto-expand; user can click
+            toggleModule(firstActiveModule);
         }
     }, 100);
 
@@ -996,7 +1064,17 @@ get_clean_globals()
                 email: savedEmail,
                 ...users[savedEmail]
             };
+            restoreCourseState();
             enterCourse();
+            if (currentScreen === 'lesson') {
+                const mapped = GLOBAL_LESSON_MAP[currentLessonIdx];
+                if (mapped) {
+                    currentModuleIdx = mapped.moduleIdx;
+                    document.getElementById('lesson-title-header').textContent = mapped.lesson.title;
+                    showScreen('lesson');
+                    renderStep();
+                }
+            }
         } else {
             showScreen('auth');
         }

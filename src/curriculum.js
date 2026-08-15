@@ -8,6 +8,132 @@ export const PATH_DATA = {
             description: 'Master the building blocks of Python: variables, types, and printing.',
             lessons: [
                 {
+                    title: 'Hello, Python!',
+                    badge: 'Foundations',
+                    icon: '🐍',
+                    xpReward: 100,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Welcome to Python! 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Python is a beginner-friendly programming language that reads a lot like English. It is used for websites, apps, data science, automation, and more.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Talking Computer</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A Python program is like a robot that follows instructions. When you want it to say something, you use the <strong>print()</strong> function.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world Context:</strong> When developers test code, they often use <strong>print()</strong> to show messages and check what a program is doing.</p>
+                                <div class="code-block">
+                                    <span class="code-builtin">print</span>(<span class="code-string">"Hello, Python!"</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Print the text <strong>Hello, Python!</strong> using the <strong>print()</strong> function.',
+                            starter: '',
+                            expected: 'Hello, Python!'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which function is used to display output in Python?',
+                            options: ['print()', 'input()', 'type()', 'len()'],
+                            correct: 0
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: Python code is usually easier for beginners than many other languages.',
+                            options: ['True', 'False'],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    title: 'Comment & Clean',
+                    badge: 'Foundations',
+                    icon: '📝',
+                    xpReward: 100,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Writing Clear Python 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Comments are notes you leave in your code. They help humans understand the program without affecting how it runs.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Labels on a Recipe</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A recipe tells you what to do step by step. Comments do the same for code: they explain the purpose without changing the final meal.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world Context:</strong> In teams, comments make code easier for teammates to understand and maintain.</p>
+                                <div class="code-block">
+                                    <span class="code-comment"># This prints a welcome message</span><br>
+                                    <span class="code-builtin">print</span>(<span class="code-string">"Welcome to PyAcademy!"</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Write a comment and then print the message <strong>Ready to code?</strong>.',
+                            starter: '# Write a comment here\n',
+                            expected: 'Ready to code?'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is a comment in Python used for?',
+                            options: ['To make the program louder', 'To explain code to humans', 'To create variables', 'To repeat a loop'],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which symbol begins a single-line comment in Python?',
+                            options: ['//', '#', '/*', '--'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'String Magic',
+                    badge: 'Foundations',
+                    icon: '🔤',
+                    xpReward: 100,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Working with Text 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Strings are text values like names, messages, and labels. You can combine them and format them in a readable way.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Building Words</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Strings are like Lego bricks made of letters. You can snap them together to build a message, a name, or a sentence.</p>
+                                </div>
+                                <div class="code-block">
+                                    first = <span class="code-string">"Ada"</span><br>
+                                    last = <span class="code-string">"Lovelace"</span><br>
+                                    full = first + <span class="code-string">" "</span> + last<br>
+                                    <span class="code-builtin">print</span>(full)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create two strings, <strong>first</strong> and <strong>last</strong>, and print them together with a space in the middle.',
+                            starter: 'first = "Ada"\nlast = "Lovelace"\n',
+                            expected: 'Ada Lovelace'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which operator is used to combine two strings in Python?',
+                            options: ['*', '+', '/', '=='],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: Strings can be joined together with the + operator.',
+                            options: ['True', 'False'],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
                     title: 'The Memory Boxes',
                     badge: 'Foundations',
                     icon: '📦',
@@ -42,6 +168,12 @@ export const PATH_DATA = {
                             type: 'quiz',
                             question: 'Which of the following creates a variable containing a number?',
                             options: ['x = "10"', 'x = 10', '10 = x', 'var x = 10'],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which choice is a valid variable name?',
+                            options: ['2name', 'user_name', 'user-name', 'class'],
                             correct: 1
                         }
                     ]
@@ -80,6 +212,12 @@ export const PATH_DATA = {
                             question: 'What is the data type of the value "Hello"?',
                             options: ['int', 'float', 'str', 'bool'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which of these is a Boolean value?',
+                            options: ['"yes"', '12', 'True', '[1, 2]'],
+                            correct: 2
                         }
                     ]
                 },
@@ -115,6 +253,280 @@ export const PATH_DATA = {
                             question: 'Which operator is used for exponentiation (power) in Python?',
                             options: ['^', '**', 'exp', 'pow'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: 10 / 2 in Python gives an integer result.',
+                            options: ['True', 'False'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Ask the User',
+                    badge: 'Foundations',
+                    icon: '🧑‍💻',
+                    xpReward: 100,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Getting Input from Users 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> The <code>input()</code> function lets your program ask a user for information while it is running.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: A Friendly Question</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A program can ask, “What is your name?” and then respond with a message using the answer.</p>
+                                </div>
+                                <div class="code-block">
+                                    name = <span class="code-builtin">input</span>(<span class="code-string">"What is your name? "</span>)<br>
+                                    <span class="code-builtin">print</span>(<span class="code-string">"Hello, "</span> + name)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Ask the user for their name and print <strong>Hello, NAME!</strong> using the value they type.',
+                            starter: 'name = input("What is your name? ")\n',
+                            expected: 'Hello, '
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What does the input() function do?',
+                            options: ['Creates a file', 'Reads text from the user', 'Adds numbers', 'Prints a list'],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which statement asks a user for a name?',
+                            options: ['print("name")', 'input("Name? ")', 'name = "Sam"', 'len(name)'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'List of Things',
+                    badge: 'Foundations',
+                    icon: '📚',
+                    xpReward: 100,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Python Lists 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A list stores several values in one variable. This helps you organize related data like names, scores, or items.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: A Backpack</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A list is like a backpack with pockets. Each item has its own position, and you can grab it by number.</p>
+                                </div>
+                                <div class="code-block">
+                                    fruits = [<span class="code-string">"apple"</span>, <span class="code-string">"banana"</span>, <span class="code-string">"grape"</span>]<br>
+                                    <span class="code-builtin">print</span>(fruits[<span class="code-number">0</span>])
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a list called <strong>colors</strong> with three values and print the first one.',
+                            starter: 'colors = ["red", "green", "blue"]\n',
+                            expected: 'red'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the index of the first item in a list?',
+                            options: ['1', '0', '-1', 'last'],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which list item would be selected by colors[2]?',
+                            options: ['First item', 'Second item', 'Third item', 'Last item'],
+                            correct: 2
+                        }
+                    ]
+                },
+                {
+                    title: 'Function Forge',
+                    badge: 'Foundations',
+                    icon: '⚙️',
+                    xpReward: 110,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Making Reusable Code 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Functions let you package code into a reusable block. This saves time and keeps programs organized.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: A Recipe Card</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Instead of rewriting the same steps every time, you save them as a recipe and call it whenever you need it.</p>
+                                </div>
+                                <div class="code-block">
+                                    <span class="code-keyword">def</span> greet(name):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Hello, "</span> + name<br><br>
+                                    <span class="code-builtin">print</span>(greet(<span class="code-string">"Sam"</span>))
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Write a function named <strong>greet</strong> that returns <strong>Hello, Sam</strong> when called with the name <strong>Sam</strong>.',
+                            starter: 'def greet(name):\n    return "Hello, " + name\n\n',
+                            expected: 'Hello, Sam'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Why are functions helpful in Python?',
+                            options: ['They make code reusable', 'They delete variables', 'They slow programs down', 'They only work with numbers'],
+                            correct: 0
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: A function can return a value to the caller.',
+                            options: ['True', 'False'],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    title: 'True or False',
+                    badge: 'Foundations',
+                    icon: '✅',
+                    xpReward: 110,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Boolean Logic 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Booleans are only two values: <code>True</code> and <code>False</code>. They are used in decisions and comparisons.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Yes or No</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A boolean is like a simple yes/no answer. Is the light green? Is the score high enough? That answer is either true or false.</p>
+                                </div>
+                                <div class="code-block">
+                                    is_ready = <span class="code-keyword">True</span><br>
+                                    score = <span class="code-number">12</span><br>
+                                    <span class="code-builtin">print</span>(score >= <span class="code-number">10</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a variable <strong>is_pass</strong> and set it to <strong>True</strong> if a score of <strong>10</strong> is greater than or equal to <strong>10</strong>, then print it.',
+                            starter: 'score = 10\nis_pass = score >= 10\n',
+                            expected: 'True'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which operator checks if two values are equal?',
+                            options: ['=', '==', '!=', '>='],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Phone Book',
+                    badge: 'Foundations',
+                    icon: '📖',
+                    xpReward: 110,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Dictionaries 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Dictionaries hold data as key-value pairs, making it easy to store and look up information by name.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: A Phonebook</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A dictionary is like a phonebook: you look up a name to find the matching number. The name is the key, and the value is what you find.</p>
+                                </div>
+                                <div class="code-block">
+                                    student = {<span class="code-string">"name"</span>: <span class="code-string">"Ava"</span>, <span class="code-string">"age"</span>: <span class="code-number">20</span>}<br>
+                                    <span class="code-builtin">print</span>(student[<span class="code-string">"name"</span>])
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a dictionary called <strong>student</strong> with a <strong>name</strong> and an <strong>age</strong>, then print the name.',
+                            starter: 'student = {"name": "Ava", "age": 20}\n',
+                            expected: 'Ava'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is a dictionary used for?',
+                            options: ['A list of numbers only', 'Key-value data lookup', 'A loop counter', 'A function name'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Mini Project: Profile Card',
+                    badge: 'Foundations',
+                    icon: '🎯',
+                    xpReward: 120,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Build a Small Python Project 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Small projects help you connect many beginner concepts together: variables, text, numbers, and formatting.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Building a Profile</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Think of this as creating a simple profile card: it stores a name, age, and skill, then prints a neat introduction.</p>
+                                </div>
+                                <div class="code-block">
+                                    name = <span class="code-string">"Maya"</span><br>
+                                    age = <span class="code-number">18</span><br>
+                                    skill = <span class="code-string">"Python"</span><br>
+                                    <span class="code-builtin">print</span>(<span class="code-string">f"Hello, I am {name}. I am {age} and learning {skill}."</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a name, age, and skill, then print a full sentence using an <strong>f-string</strong>.',
+                            starter: 'name = "Maya"\nage = 18\nskill = "Python"\n',
+                            expected: 'Hello, I am Maya. I am 18 and learning Python.'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is an f-string used for?',
+                            options: ['To check logic', 'To insert values into text', 'To create a list', 'To store numbers'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Module 1 Capstone',
+                    badge: 'Foundations',
+                    icon: '🏁',
+                    xpReward: 150,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Final Capstone: Your Intro Card 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A capstone brings together everything you’ve learned so far: output, variables, strings, input, and formatting.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Your Personal Profile</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Imagine you are creating a tiny profile for a coding app. It introduces you, says what you like, and prints a friendly message.</p>
+                                </div>
+                                <div class="code-block">
+                                    name = <span class="code-string">"Sam"</span><br>
+                                    language = <span class="code-string">"Python"</span><br>
+                                    <span class="code-builtin">print</span>(<span class="code-string">f"Hi {name}! Your favorite language is {language}."</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create variables for a <strong>name</strong> and a <strong>language</strong>, then print <strong>Hi NAME! Your favorite language is LANGUAGE.</strong> using an f-string.',
+                            starter: 'name = "Sam"\nlanguage = "Python"\n',
+                            expected: 'Hi Sam! Your favorite language is Python.'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which option is a valid Python comment?',
+                            options: ['# This is a comment', '// This is a comment', '<!-- This is a comment -->', '/* This is a comment */'],
+                            correct: 0
                         }
                     ]
                 }
@@ -125,7 +537,7 @@ export const PATH_DATA = {
             title: '2. Control Flow',
             icon: '🔀',
             badge: 'Logic',
-            description: 'Teach your programs how to make decisions and repeat actions.',
+            description: 'Learn to steer your programs with decisions, repetition, and safe error handling.',
             lessons: [
                 {
                     title: 'The Crossroads',
@@ -137,11 +549,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Making Decisions 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Use <code>if</code>, <code>elif</code>, and <code>else</code> to let your code branch off in different directions based on conditions.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Code does not always run in one straight line. With <code>if</code>, <code>elif</code>, and <code>else</code>, your program can choose different paths depending on conditions.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Fork in the Road</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">You reach a fork. If the sign says "Sunny", you go left to the beach. Otherwise, you go right to the cinema.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A program is like a traveler at a fork in the road. The condition tells it which road to take: one path for "yes" and another for "no".</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Websites check whether a password is valid, games check whether a player has enough points, and apps decide whether to show a login page or a dashboard.</p>
                                 <div class="code-block">
                                     age = <span class="code-number">18</span><br>
                                     <span class="code-keyword">if</span> age >= <span class="code-number">18</span>:<br>
@@ -162,6 +575,54 @@ export const PATH_DATA = {
                             question: 'What does the "==" operator do?',
                             options: ['Assigns a value', 'Checks for equality', 'Multiplies two values', 'Defines a function'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which keyword runs when the condition is false?',
+                            options: ['if', 'elif', 'else', 'while'],
+                            correct: 2
+                        }
+                    ]
+                },
+                {
+                    title: 'Truth Tests',
+                    badge: 'Logic',
+                    icon: '✅',
+                    xpReward: 120,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Comparisons & Boolean Logic 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Conditions are based on comparisons like <code>==</code>, <code>!=</code>, <code>&gt;</code>, and <code>&lt;</code>. When a comparison is true, the program follows one path.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Judge</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A condition acts like a judge asking, "Is this statement true?" If the answer is yes, the program continues one route. If no, it goes another route.</p>
+                                </div>
+                                <div class="code-block">
+                                    score = <span class="code-number">90</span><br>
+                                    <span class="code-keyword">if</span> score >= <span class="code-number">70</span> <span class="code-keyword">and</span> score < <span class="code-number">100</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Passing"</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Write a condition that checks if <strong>score</strong> is greater than or equal to <strong>80</strong> and prints <strong>"Great"</strong>.',
+                            starter: 'score = 85\n',
+                            expected: 'Great'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which comparison means "not equal to"?',
+                            options: ['==', '!=', '>=', '<='],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: Conditions can be combined using and and or.',
+                            options: ['True', 'False'],
+                            correct: 0
                         }
                     ]
                 },
@@ -175,19 +636,17 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Repeating Actions 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Loops (<code>for</code> and <code>while</code>) allow you to run the same block of code multiple times without rewriting it.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Loops let you repeat code without rewriting it. They are incredibly useful for lists, patterns, animations, and tasks that repeat a fixed number of times.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Ferris Wheel</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">The wheel goes around and around for a set number of rotations (for loop) or until the operator hits the stop button (while loop).</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A loop is like a ride that keeps moving until it has completed the right number of turns or until a condition says stop.</p>
                                 </div>
-
                                 <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">🚀 Walkthrough</h3>
                                 <div class="code-block" style="margin-bottom:12px">
                                     <span class="code-comment"># FOR Loop (Fixed number of turns)</span><br>
                                     <span class="code-keyword">for</span> turn <span class="code-keyword">in</span> <span class="code-builtin">range</span>(<span class="code-number">3</span>):<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Wheee!"</span>)<br>
                                 </div>
-
                                 <div class="code-block">
                                     <span class="code-comment"># WHILE Loop (Until a condition changes)</span><br>
                                     ride_active = <span class="code-keyword">True</span><br>
@@ -208,6 +667,49 @@ export const PATH_DATA = {
                             question: 'Which keyword is used to stop a loop early?',
                             options: ['stop', 'end', 'break', 'quit'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which loop is best when you know exactly how many times to repeat?',
+                            options: ['for', 'while', 'if', 'try'],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    title: 'Break, Continue, Repeat',
+                    badge: 'Logic',
+                    icon: '⏭️',
+                    xpReward: 130,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Controlling Loop Flow 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Sometimes a loop should end early or skip a value. The keywords <code>break</code> and <code>continue</code> help you control that flow.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Traffic Lights</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A <code>break</code> is like stopping the car at the red light, and <code>continue</code> is like skipping a road sign and moving on to the next turn.</p>
+                                </div>
+                                <div class="code-block">
+                                    <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-builtin">range</span>(<span class="code-number">5</span>):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> i == <span class="code-number">3</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">continue</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(i)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Use a loop to print numbers <strong>0</strong> through <strong>4</strong> but skip <strong>2</strong> using <strong>continue</strong>.',
+                            starter: 'for i in range(5):\n    if i == 2:\n        continue\n    print(i)\n',
+                            expected: '0\n1\n3\n4'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What does continue do inside a loop?',
+                            options: ['Stops the program', 'Skips the rest of this iteration', 'Deletes the loop', 'Creates a new variable'],
+                            correct: 1
                         }
                     ]
                 },
@@ -221,11 +723,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Handling Exceptions 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Use <code>try</code> and <code>except</code> to prevent your program from crashing when something unexpected happens.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Use <code>try</code> and <code>except</code> to prevent your program from crashing when something unexpected happens. A good program handles mistakes gracefully instead of stopping completely.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Safety Net</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">If a trapeze artist falls, the net catches them. If your code "falls" (errors), the <code>except</code> block catches it.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">When something goes wrong, the safety net catches the fall. In code, the <code>except</code> block catches the error and tells the user what happened.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Apps often handle missing files, invalid input, and network errors without crashing. That is why error handling is a core beginner skill.</p>
                                 <div class="code-block">
                                     <span class="code-keyword">try</span>:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;result = <span class="code-number">10</span> / <span class="code-number">0</span><br>
@@ -245,6 +748,50 @@ export const PATH_DATA = {
                             question: 'Which block runs whether an error occurred or not?',
                             options: ['catch', 'finally', 'else', 'always'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Why is exception handling useful?',
+                            options: ['It makes programs crash more often', 'It allows programs to recover from mistakes', 'It deletes code slowly', 'It assigns values automatically'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Module 2 Capstone',
+                    badge: 'Logic',
+                    icon: '🏁',
+                    xpReward: 150,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Final Capstone: Smart Daily Check 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Module 2 is all about control — making decisions, repeating tasks, and handling mistakes. This capstone combines all three into one small real-world program.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Smart Assistant</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Your program acts like a smart assistant: it checks whether someone is ready to start, loops through tasks, and handles invalid input without crashing.</p>
+                                </div>
+                                <div class="code-block">
+                                    tasks = [<span class="code-string">"Study"</span>, <span class="code-string">"Code"</span>, <span class="code-string">"Exercise"</span>]<br>
+                                    ready = <span class="code-keyword">True</span><br>
+                                    <span class="code-keyword">if</span> ready:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> task <span class="code-keyword">in</span> tasks:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">f"Today I will: {task}"</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a list of tasks, check if <strong>ready</strong> is <strong>True</strong>, and loop over the tasks printing <strong>Today I will: TASK</strong> for each item.',
+                            starter: 'tasks = ["Study", "Code", "Exercise"]\nready = True\n',
+                            expected: 'Today I will: Study\nToday I will: Code\nToday I will: Exercise'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the main idea of Module 2?',
+                            options: ['How to store data forever', 'How to control the flow of a program', 'How to make websites pretty', 'How to write markdown'],
+                            correct: 1
                         }
                     ]
                 }
@@ -255,7 +802,7 @@ export const PATH_DATA = {
             title: '3. Data Structures',
             icon: '📚',
             badge: 'Organization',
-            description: 'Learn to manage collections of data using Lists, Dictionaries, and Sets.',
+            description: 'Organize information with lists, dictionaries, sets, and tuples so your programs can model real-world data cleanly.',
             lessons: [
                 {
                     title: 'The Shopping List',
@@ -267,10 +814,16 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Python Lists 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Lists are ordered collections that can hold multiple items. You can add, remove, and change items easily.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A list is an ordered collection of items. It is one of the most common data structures in Python because it lets you keep many values together and work with them in sequence.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Train Cars</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">Each item is a train car. They are connected in a specific order. You can add a car to the end or remove one from the middle.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A list is like a train with cars in a fixed order. You can add a car, remove a car, or pick a specific car by position.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Lists are used for shopping carts, task lists, scores, game inventory, and any ordered information.</p>
+                                <div class="code-block">
+                                    groceries = [<span class="code-string">"milk"</span>, <span class="code-string">"eggs"</span>, <span class="code-string">"bread"</span>]<br>
+                                    <span class="code-builtin">print</span>(groceries[<span class="code-number">0</span>])<br>
+                                    groceries.append(<span class="code-string">"bananas"</span>)
                                 </div>
                             `
                         },
@@ -285,6 +838,12 @@ export const PATH_DATA = {
                             question: 'How do you access the first element of a list "L"?',
                             options: ['L(0)', 'L[1]', 'L[0]', 'L.first()'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: Lists keep items in order.',
+                            options: ['True', 'False'],
+                            correct: 0
                         }
                     ]
                 },
@@ -298,11 +857,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Dictionaries 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Dictionaries store data in Key-Value pairs. They are perfect for looking up information quickly.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A dictionary stores data as key-value pairs. This makes it easy to look up a value by name instead of by position.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Labeled Locker</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">You don't search every locker for your bag; you just go to locker "101". The key is the number, the value is your bag.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A dictionary is like a locker system: the key is the locker number, and the value is what's inside it. You don't need to search through everything.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Dictionaries are used for user profiles, settings, server responses, and mapping names to values.</p>
                                 <div class="code-block">
                                     user = {<span class="code-string">"name"</span>: <span class="code-string">"Bob"</span>, <span class="code-string">"id"</span>: <span class="code-number">42</span>}<br>
                                     <span class="code-builtin">print</span>(user[<span class="code-string">"name"</span>])
@@ -320,6 +880,12 @@ export const PATH_DATA = {
                             question: 'Which method returns all the keys in a dictionary?',
                             options: ['.all()', '.keys()', '.names()', '.list()'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is a dictionary made of?',
+                            options: ['Keys and values', 'Classes and methods', 'Loops and conditions', 'Numbers only'],
+                            correct: 0
                         }
                     ]
                 },
@@ -333,10 +899,15 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Sets and Tuples 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> <code>Tuples</code> are lists that cannot be changed (immutable), and <code>Sets</code> are collections of unique items with no duplicates.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> <code>Tuples</code> are fixed collections that cannot be changed after creation, while <code>Sets</code> are unordered collections with unique values only. They help solve different problems from lists and dictionaries.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Marble Bag (Set)</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">In a set, you can't have two identical red marbles. If you try to add another, the bag just ignores it.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A set is like a bag of marbles where you can only keep one of each color. A tuple is like a fixed recipe card: the order is important, but you cannot rewrite it.</p>
+                                </div>
+                                <div class="code-block">
+                                    numbers = (<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>)<br>
+                                    unique = {<span class="code-number">1</span>, <span class="code-number">1</span>, <span class="code-number">2</span>}<br>
+                                    <span class="code-builtin">print</span>(unique)
                                 </div>
                             `
                         },
@@ -351,6 +922,47 @@ export const PATH_DATA = {
                             question: 'Which of these is a Tuple?',
                             options: ['[1, 2]', '{1, 2}', '(1, 2)', '<1, 2>'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What makes a set different from a list?',
+                            options: ['A set keeps duplicates', 'A set removes duplicates automatically', 'A set can never hold numbers', 'A set is ordered'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Data Structures Capstone',
+                    badge: 'Structures',
+                    icon: '🏁',
+                    xpReward: 180,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Final Capstone: Student Profile Builder 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Real programs often mix data structures together. Lists store multiple values, dictionaries store named information, and sets help remove duplicates.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Student Dashboard</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A student profile has a name, a level, active courses, and badges. Each of those can be stored in a different structure for different purposes.</p>
+                                </div>
+                                <div class="code-block">
+                                    student = {<span class="code-string">"name"</span>: <span class="code-string">"Ava"</span>, <span class="code-string">"courses"</span>: [<span class="code-string">"Math"</span>, <span class="code-string">"Python"</span>]}<br>
+                                    <span class="code-builtin">print</span>(student[<span class="code-string">"name"</span>])
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a dictionary <strong>student</strong> with keys <strong>"name"</strong> and <strong>"courses"</strong>, where "courses" is a list containing <strong>"Python"</strong> and <strong>"Math"</strong>. Then print the student name.',
+                            starter: 'student = {"name": "Ava", "courses": ["Python", "Math"]}\n',
+                            expected: 'Ava'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the main takeaway from the Data Structures module?',
+                            options: ['Programs only use one type of data', 'Different data structures solve different problems', 'Sets are the same as dictionaries', 'Lists cannot store multiple items'],
+                            correct: 1
                         }
                     ]
                 }
@@ -361,7 +973,7 @@ export const PATH_DATA = {
             title: '4. OOP',
             icon: '🏗️',
             badge: 'Architect',
-            description: 'Build robust systems using Classes, Objects, and Inheritance.',
+            description: 'Scale your thinking from scripts to systems by modeling real-world ideas with classes, objects, and inheritance.',
             lessons: [
                 {
                     title: 'The Blueprint',
@@ -373,17 +985,23 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Classes & Objects 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A Class is a blueprint for creating objects. It defines what data they hold and what they can do.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A class is a blueprint, and an object is a concrete instance created from that blueprint. This idea is how Python models real-world entities like cars, users, and students in a structured way.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Cookie Cutter</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">The class is the cutter. The objects are the individual cookies. They all have the same shape, but can have different toppings.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">The class is the cutter. The objects are the individual cookies. They all have the same shape, but can have different toppings, sizes, or flavors.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">💡 In OOP, we usually separate data (attributes) from behavior (methods). A <code>Car</code> has attributes like color and speed, and methods like drive() or brake().</p>
+                                <div class="code-block">
+                                    <span class="code-keyword">class</span> <span class="code-builtin">Car</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-builtin">__init__</span>(self, color):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.color = color
                                 </div>
                             `
                         },
                         {
                             type: 'code',
                             instruction: 'Define a class <strong>Car</strong> with an <strong>__init__</strong> method that sets <strong>self.color</strong>. Instantiate it with "Red" and print the color.',
-                            starter: 'class Car:\n    def __init__(self, color):\n        self.color = color\n\n',
+                            starter: 'class Car:\n    def __init__(self, color):\n        self.color = color\n\nmy_car = Car("Red")\nprint(my_car.color)\n',
                             expected: 'Red'
                         },
                         {
@@ -391,6 +1009,12 @@ export const PATH_DATA = {
                             question: 'What is the purpose of the "__init__" method?',
                             options: ['To delete an object', 'To initialize an object\'s attributes', 'To hide the class', 'To speed up the code'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: A class is a blueprint, while an instance is a real object built from that blueprint.',
+                            options: ['True', 'False'],
+                            correct: 0
                         }
                     ]
                 },
@@ -404,14 +1028,16 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Inheritance 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Inheritance allows one class to take the attributes and methods of another class, reducing code duplication.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Inheritance allows one class to reuse code from another class. This is useful when multiple things share the same behavior but also need their own custom features.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Biology</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">A child inherits traits from their parents but can also have their own unique characteristics.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A child inherits traits from their parents but can also have their own unique characteristics. The same idea works in classes.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🏗️ A base class defines shared behavior. A subclass adds or changes that behavior without rewriting everything from scratch.</p>
                                 <div class="code-block">
                                     <span class="code-keyword">class</span> <span class="code-builtin">Animal</span>:<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;pass<br><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-builtin">talk</span>(self):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Hello"</span>)<br><br>
                                     <span class="code-keyword">class</span> <span class="code-builtin">Dog</span>(Animal):<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;pass
                                 </div>
@@ -420,7 +1046,7 @@ export const PATH_DATA = {
                         {
                             type: 'code',
                             instruction: 'Create a class <strong>ElectricCar</strong> that inherits from <strong>Car</strong>. Just use <strong>pass</strong> inside.',
-                            starter: 'class Car:\n    pass\n\n',
+                            starter: 'class Car:\n    pass\n\nclass ElectricCar(Car):\n    pass\n',
                             expected: ''
                         },
                         {
@@ -428,6 +1054,12 @@ export const PATH_DATA = {
                             question: 'What do we call the class being inherited from?',
                             options: ['Subclass', 'Parent/Base Class', 'Child Class', 'Derivative Class'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Why is inheritance useful?',
+                            options: ['It reduces repeated code', 'It makes code run faster', 'It turns all methods into variables', 'It removes all classes'],
+                            correct: 0
                         }
                     ]
                 },
@@ -441,11 +1073,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Encapsulation & Polymorphism 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Polymorphism lets different classes be treated as the same type through a common interface.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Encapsulation hides internal details while exposing a clean interface, and polymorphism allows objects of different classes to share the same method name but behave differently.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Universal Remote</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">You press "Power". Whether it's a TV, DVD player, or AC, they all "Power on", but in their own way.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">You press "Power". Whether it's a TV, a DVD player, or an AC, they all react to the same command, but each object defines its own behavior.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📌 Real-world example: a <code>Person</code> class and a <code>Robot</code> class might both have a <code>talk()</code> method, but each one says something different.</p>
                             `
                         },
                         {
@@ -459,6 +1092,12 @@ export const PATH_DATA = {
                             question: 'Which concept refers to hiding internal data and requiring interaction via methods?',
                             options: ['Inheritance', 'Encapsulation', 'Polymorphism', 'Abstraction'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is polymorphism about?',
+                            options: ['Different classes doing the same action in different ways', 'Creating objects without classes', 'Packing data into lists', 'Preventing any method from existing'],
+                            correct: 0
                         }
                     ]
                 }
@@ -469,7 +1108,7 @@ export const PATH_DATA = {
             title: '5. Prof Toolkit',
             icon: '🛠️',
             badge: 'Pro',
-            description: 'Learn industry standards: Pip, Virtual Environments, and Testing.',
+            description: 'Build like a real developer by learning environments, packages, testing, and the habits that keep Python projects reliable.',
             lessons: [
                 {
                     title: 'The Virtual Bubble',
@@ -481,10 +1120,15 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Virtual Environments 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A virtual environment (venv) is an isolated space for your project\'s dependencies, preventing version conflicts.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A virtual environment keeps project dependencies isolated so one project's library versions do not break another project.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Lab Room</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">Each project is a different experiment. You wouldn't want chemicals from one experiment leaking into another. The lab room keeps them separate.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Each project is a different experiment. You would never mix chemicals from one lab into another. Virtual environments keep experiments separate.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🧠 If you work on multiple Python projects, the packages installed globally may conflict. A venv gives each project its own clean environment.</p>
+                                <div class="code-block">
+                                    python -m venv .venv<br>
+                                    source .venv/bin/activate
                                 </div>
                             `
                         },
@@ -499,6 +1143,12 @@ export const PATH_DATA = {
                             question: 'Why do we use virtual environments?',
                             options: ['To make code faster', 'To isolate project dependencies', 'To encrypt source code', 'To share code on GitHub'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: Global Python packages are usually the safest choice for every project.',
+                            options: ['True', 'False'],
+                            correct: 1
                         }
                     ]
                 },
@@ -512,13 +1162,15 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Managing Packages with Pip 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> <code>pip</code> is the package manager for Python. It allows you to install libraries written by other developers.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> <code>pip</code> installs third-party libraries from PyPI so you can add features without writing everything yourself.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The App Store</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">You need a specialized tool (like a map). Instead of building it yourself, you download it from the store.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📦 <code>pip install requests</code> adds a library. <code>pip freeze &gt; requirements.txt</code> records dependencies so anyone can reproduce the environment.</p>
                                 <div class="code-block">
-                                    pip install requests
+                                    pip install requests<br>
+                                    pip freeze &gt; requirements.txt
                                 </div>
                             `
                         },
@@ -533,6 +1185,12 @@ export const PATH_DATA = {
                             question: 'What is "PyPI"?',
                             options: ['A Python interpreter', 'The Python Package Index', 'A testing framework', 'A database engine'],
                             correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the purpose of a requirements file?',
+                            options: ['To store the project story', 'To list dependencies for setup', 'To test the code', 'To hide files from Git'],
+                            correct: 1
                         }
                     ]
                 },
@@ -546,23 +1204,30 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Testing & Logging 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Logging tracks what happens while your code runs, and Testing ensures your code produces the right results.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Logging shows what happened while your code ran, and tests check whether the behavior matches the expected outcome. Both are essential in professional development.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Flight Data Recorder</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">Logging is the "Black Box". If the plane crashes, you check the box to see what happened right before the failure.</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">✅ A small <code>assert</code> can quickly catch a bug in a function, while logging helps developers spot issues in real-world usage.</p>
                             `
                         },
                         {
                             type: 'code',
                             instruction: 'Use <strong>assert</strong> to check if <strong>2 * 2</strong> is <strong>4</strong>.',
-                            starter: '',
-                            expected: ''
+                            starter: 'assert 2 * 2 == 4\nprint("ok")\n',
+                            expected: 'ok'
                         },
                         {
                             type: 'quiz',
                             question: 'Which module is built into Python for tracking events?',
                             options: ['tracker', 'logging', 'history', 'eventlib'],
+                            correct: 1
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What does a test generally do?',
+                            options: ['Changes the program permanently', 'Confirms expected behavior', 'Deletes old files', 'Runs only in production'],
                             correct: 1
                         }
                     ]
@@ -574,7 +1239,7 @@ export const PATH_DATA = {
             title: '6. Web & APIs',
             icon: '🌐',
             badge: 'Network',
-            description: 'Connect your Python scripts to the world using HTTP and JSON.',
+            description: 'Connect your Python skills to the outside world by working with HTTP, JSON, and data from real services.',
             lessons: [
                 {
                     title: 'The Digital Handshake',
@@ -586,11 +1251,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">HTTP Requests 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Apps talk via HTTP. Your script (the Client) sends a Request, and the Server sends back a Response.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Apps talk via HTTP. Your script sends a Request, and a remote server sends a Response. This is how websites, APIs, and services communicate.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Ordering Pizza</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">You call (Request). You give details (Payload). The shop says "OK" (Status Code 200) and brings the pizza (Data).</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📡 Common HTTP methods include GET, POST, PUT, and DELETE. GET asks for information; POST creates it; PUT updates it; DELETE removes it.</p>
                             `
                         },
                         {
@@ -604,6 +1270,12 @@ export const PATH_DATA = {
                             question: 'What does a 404 Status Code mean?',
                             options: ['Success', 'Unauthorized', 'Not Found', 'Server Error'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which method is most often used to fetch a resource?',
+                            options: ['POST', 'GET', 'DELETE', 'PATCH'],
+                            correct: 1
                         }
                     ]
                 },
@@ -617,17 +1289,21 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Parsing JSON 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> JSON is the universal language of data on the web. It looks like a Python dictionary.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> JSON is a lightweight format for exchanging structured data. It looks a lot like a Python dictionary and is used everywhere on the web.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Universal Adapter</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">Whether you use Java, Python, or JS, everyone understands JSON. It\'s like the metric system for data.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Whether you use Java, Python, or JS, everyone understands JSON. It\'s the common language for data.</p>
+                                </div>
+                                <div class="code-block">
+                                    data = {<span class="code-string">"id"</span>: <span class="code-number">1</span>, <span class="code-string">"name"</span>: <span class="code-string">"Ada"</span>}<br>
+                                    <span class="code-builtin">print</span>(data[<span class="code-string">"name"</span>])
                                 </div>
                             `
                         },
                         {
                             type: 'code',
                             instruction: 'Use <strong>json.loads()</strong> to parse <strong>\'{"id": 1}\'</strong> and print the value of "id".',
-                            starter: 'import json\ns = \'{"id": 1}\'\n',
+                            starter: 'import json\ns = \'{"id": 1}\'\nobj = json.loads(s)\nprint(obj["id"])\n',
                             expected: '1'
                         },
                         {
@@ -635,6 +1311,12 @@ export const PATH_DATA = {
                             question: 'What is the Python equivalent of a JSON object?',
                             options: ['List', 'Tuple', 'Dictionary', 'Set'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'True or False: JSON is mostly for storage on disk only.',
+                            options: ['True', 'False'],
+                            correct: 1
                         }
                     ]
                 },
@@ -648,11 +1330,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Extracting Data 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> When there is no API, you can "scrape" data directly from HTML using tools like BeautifulSoup.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> When there is no API, you can scrape HTML to extract information. This means reading the structure of a webpage and selecting the data you want.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Gold Panner</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">The website is a river of mud (HTML). Scraping is the process of sifting through the mud to find the gold nuggets (Data).</p>
                                 </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">⚠️ Always respect a site's terms, robots.txt, and rate limits. Web scraping should be ethical and intentional.</p>
                             `
                         },
                         {
@@ -666,6 +1349,12 @@ export const PATH_DATA = {
                             question: 'Which HTML tag usually contains the main title of a page?',
                             options: ['<p>', '<div>', '<h1>', '<span>'],
                             correct: 2
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'When is scraping usually a bad idea?',
+                            options: ['When it ignores a site\'s rules or overloads it', 'When you are using HTML', 'When the page has a title', 'When you need data from a website'],
+                            correct: 0
                         }
                     ]
                 }
@@ -676,7 +1365,7 @@ export const PATH_DATA = {
             title: '7. Backend & DB',
             icon: '💾',
             badge: 'Data',
-            description: 'Store data permanently using SQL and relational databases.',
+            description: 'Learn how software stores information persistently so apps can remember users, data, and state over time.',
             lessons: [
                 {
                     title: 'The Server Waiter',
@@ -778,7 +1467,7 @@ export const PATH_DATA = {
             title: '8. Deployment',
             icon: '🚀',
             badge: 'Ops',
-            description: 'Take your code from your machine to the world with Git and CI/CD.',
+            description: 'Ship your work beyond your machine and learn how code moves from development into the real world.',
             lessons: [
                 {
                     title: 'The Shipping Container',
@@ -880,7 +1569,7 @@ export const PATH_DATA = {
             title: '9. Advanced Idioms',
             icon: '🪄',
             badge: 'Expert',
-            description: 'Master powerful Python features: Decorators, Generators, and Regex.',
+            description: 'Move beyond the basics and learn the Python patterns that make experienced engineers write cleaner, more powerful code.',
             lessons: [
                 {
                     title: 'Function Wrappers',
@@ -972,6 +1661,111 @@ export const PATH_DATA = {
                             question: 'What is the "Event Loop"?',
                             options: ['A circuit board', 'The manager that schedules async tasks', 'A type of for-loop', 'A crash recovery system'],
                             correct: 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'final-project',
+            title: '10. Final Project',
+            icon: '🚀',
+            badge: 'Portfolio',
+            description: 'Bring the whole journey together in a polished project that demonstrates how your Python skills fit as one complete story.',
+            lessons: [
+                {
+                    title: 'Design the App',
+                    badge: 'Portfolio',
+                    icon: '🧭',
+                    xpReward: 500,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Project Planning 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Real developers do not code randomly. They define the problem, sketch the features, and plan data flow before writing the first line of code.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Blueprint</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Before building a house, you design the rooms, the doors, and the flow. The same should happen with your app.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🎯 A strong final project might be a study planner, a quiz app, a budget tracker, or a small command-line assistant. The goal is not complexity — it is clarity and usefulness.</p>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Print the name of a good beginner final project idea that tracks tasks and goals.',
+                            starter: '',
+                            expected: 'study planner'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What should you do before writing a final project?',
+                            options: ['Skip planning and code fast', 'Define features and outline the flow', 'Only use one file', 'Delete all tests'],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    title: 'Build the Core',
+                    badge: 'Portfolio',
+                    icon: '💻',
+                    xpReward: 500,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Core Development 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A final project should combine variables, conditions, loops, functions, and data structures into one coherent workflow.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Engine Room</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">The app is an engine: functions are components, data structures are fuel, and control flow is how the whole system moves.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">✅ Good projects often include a menu, repeated actions, simple storage, and clear user feedback such as print statements or status messages.</p>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Write a function <strong>hello(name)</strong> that returns <strong>"Hi, name!"</strong>. Then call it with <strong>"Ava"</strong> and print the result.',
+                            starter: 'def hello(name):\n    return f"Hi, {name}!"\n\nprint(hello("Ava"))\n',
+                            expected: 'Hi, Ava!'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the value of combining loops, functions, and data structures in a final project?',
+                            options: ['It makes the code more realistic and useful', 'It makes the project impossible to run', 'It removes all user input', 'It is only for advanced developers'],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    title: 'Polish & Present',
+                    badge: 'Portfolio',
+                    icon: '✨',
+                    xpReward: 500,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Presentation & Polish 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A finished project is not only functional; it is clear, tested, and understandable. Great developers polish the user experience and explain their thinking.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Showcase Stage</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">The code is the backstage work. The presentation is the bright lights that let people understand what your app does and why it matters.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📌 Good project reflections include what the app does, what problem it solves, and what you learned while building it.</p>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Print a short project description that includes the words <strong>Python</strong> and <strong>portfolio</strong>.',
+                            starter: '',
+                            expected: 'Python portfolio'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Why is polishing a project important?',
+                            options: ['It makes it easier to explain and share', 'It is unnecessary', 'It removes all functions', 'It changes Python into JavaScript'],
+                            correct: 0
                         }
                     ]
                 }
