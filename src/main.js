@@ -9,6 +9,8 @@
     let selectedOption = null;
     let codeChallengeSolved = false;
     let currentScreen = 'dashboard';
+    let currentDashboardTab = 'modules';
+    let expandedModuleIdx = null;
     const COURSE_STATE_KEY = 'pya_course_state';
     let xp = 0;
     let totalXPEarned = 0;
@@ -319,7 +321,9 @@ get_clean_globals()
         totalXPEarned = currentUser.totalXP || xp;
         updateXPDisplay();
         renderModules();
+        renderOnboardingBanner();
         showScreen('dashboard');
+        showDashTab('modules');
     }
 
     function saveCourseState() {
@@ -329,6 +333,8 @@ get_clean_globals()
             currentLessonIdx,
             currentStepIdx,
             currentScreen,
+            currentDashboardTab,
+            expandedModuleIdx,
             savedAt: Date.now()
         };
         localStorage.setItem(COURSE_STATE_KEY, JSON.stringify(state));
@@ -352,6 +358,8 @@ get_clean_globals()
             if (Number.isInteger(state.currentLessonIdx)) currentLessonIdx = Math.min(state.currentLessonIdx, ALL_LESSONS.length - 1);
             if (Number.isInteger(state.currentStepIdx)) currentStepIdx = Math.max(0, state.currentStepIdx);
             if (state.currentScreen) currentScreen = state.currentScreen;
+            if (state.currentDashboardTab) currentDashboardTab = state.currentDashboardTab;
+            if (Number.isInteger(state.expandedModuleIdx)) expandedModuleIdx = state.expandedModuleIdx;
         } catch (_) {
             localStorage.removeItem(COURSE_STATE_KEY);
         }
@@ -371,7 +379,7 @@ get_clean_globals()
         document.getElementById('path-web').style.borderColor = path === 'web' ? '' : 'transparent';
 
         const desc = path === 'python'
-            ? 'Work through Python step by step, from first program to production-grade backend concepts.'
+            ? 'A complete Python journey from first program to production thinking: fundamentals, logic, data, OOP, tools, web APIs, and backend confidence.'
             : 'Master the art of building beautiful, interactive websites with HTML, CSS, and JavaScript.';
         document.getElementById('path-desc').textContent = desc;
 
@@ -389,6 +397,7 @@ get_clean_globals()
 
     /* ── DASHBOARD TABS ── */
     function showDashTab(t, el) {
+        currentDashboardTab = t;
         const container = document.getElementById('screen-dashboard');
         container.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
         container.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
@@ -398,6 +407,83 @@ get_clean_globals()
         if (t === 'achievements') renderAchievements();
         if (t === 'sandbox') renderVFS();
         if (t === 'leaderboard') fetchLeaderboard();
+        if (t === 'modules') renderOnboardingBanner();
+        saveCourseState();
+    }
+
+    function getNextLessonForUser() {
+        const completed = users[currentUser?.email]?.completed || [];
+        for (let i = 0; i < ALL_LESSONS.length; i++) {
+            if (!completed.includes(i)) {
+                const mapped = GLOBAL_LESSON_MAP[i];
+                return {
+                    index: i,
+                    lesson: mapped ? mapped.lesson : ALL_LESSONS[i],
+                    isNew: completed.length === 0
+                };
+            }
+        }
+        return {
+            index: ALL_LESSONS.length - 1,
+            lesson: ALL_LESSONS[Math.max(0, ALL_LESSONS.length - 1)],
+            isNew: false
+        };
+    }
+
+    function renderOnboardingBanner() {
+        const banner = document.getElementById('onboarding-banner');
+        if (!banner || !currentUser) {
+            if (banner) banner.style.display = 'none';
+            return;
+        }
+
+        const completed = users[currentUser.email]?.completed || [];
+        const nextLesson = getNextLessonForUser();
+        const firstActiveModule = getFirstActiveModuleIndex();
+
+        if (completed.length === 0) {
+            banner.style.display = 'flex';
+            banner.className = 'premium-banner';
+            banner.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;width:100%">
+                    <div>
+                        <div style="font-size:12px;font-weight:700;color:#7dd3fc;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Beginner to professional</div>
+                        <div style="font-size:15px;font-weight:700;color:var(--text-primary)">Start with Module 1 and follow a clear path to real-world Python confidence.</div>
+                    </div>
+                    <button class="btn btn-sm" onclick="focusFirstModule(${firstActiveModule})">Begin here</button>
+                </div>`;
+            return;
+        }
+
+        banner.style.display = 'flex';
+        banner.className = 'premium-banner';
+        banner.innerHTML = `
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;width:100%">
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0">
+                    <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg, rgba(16,185,129,0.18), rgba(59,130,246,0.18));display:flex;align-items:center;justify-content:center;font-size:20px">⚡</div>
+                    <div>
+                        <div style="font-size:12px;font-weight:700;color:#7dd3fc;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Continue your streak</div>
+                        <div style="font-size:15px;font-weight:700;color:var(--text-primary)">Next up: ${nextLesson.lesson?.title || 'Your next lesson'}</div>
+                    </div>
+                </div>
+                <button class="btn btn-sm" onclick="startLesson(${nextLesson.index})">Resume lesson</button>
+            </div>`;
+    }
+
+    function focusFirstModule(moduleIndex = getFirstActiveModuleIndex()) {
+        expandedModuleIdx = moduleIndex;
+        renderModules();
+        setTimeout(() => {
+            const container = document.getElementById('module-lessons-' + moduleIndex);
+            const chevron = document.getElementById('chevron-' + moduleIndex);
+            if (container) {
+                container.style.display = 'flex';
+            }
+            if (chevron) {
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }, 20);
+        saveCourseState();
     }
 
     /* ── XP & LEVEL ── */
@@ -514,6 +600,7 @@ get_clean_globals()
         const completed = users[currentUser?.email]?.completed || [];
         const allLessonIndices = completed;
         const firstActiveModuleIndex = getFirstActiveModuleIndex();
+        const activeModuleIndex = expandedModuleIdx ?? firstActiveModuleIndex;
         const html = MODULES.map((mod, mi) => {
             const modLessonCount = mod.lessons.length;
             const modStartIdx = MODULES.slice(0, mi).reduce((acc, m) => acc + m.lessons.length, 0);
@@ -526,8 +613,39 @@ get_clean_globals()
                 return m.lessons.some((_, li) => !allLessonIndices.includes(sIdx + li));
             });
             const isStartHere = mi === firstActiveModuleIndex && !modComplete;
+            const isCurrentModule = mi === currentModuleIdx && !modComplete;
+            const isOpen = activeModuleIndex === mi;
+            const lessonsHtml = isOpen ? mod.lessons.map((l, li) => {
+                const globalLi = modStartIdx + li;
+                const isComp = completed.includes(globalLi);
+                const prevCompleted = li === 0 || completed.includes(globalLi - 1) || isComp;
+                const locked = !prevCompleted && !isComp;
+                return `
+                <div class="lesson-card ${isComp ? 'completed' : ''} ${locked ? 'locked' : ''}" onclick="${locked ? '' : `startLesson(${globalLi})`}" style="cursor:${locked ? 'not-allowed' : 'pointer'}">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div style="font-size:22px;flex-shrink:0">${l.icon}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px">
+                        <span style="font-size:13px;font-weight:700;color:var(--text-primary)">${l.title}</span>
+                        <span class="badge badge-${l.badge}">${l.badge}</span>
+                        ${isComp ? '<span style="color:var(--accent);font-size:12px;font-weight:600">✓</span>' : ''}
+                        ${locked ? '<span style="font-size:11px;color:var(--text-muted)">🔒</span>' : ''}
+                      </div>
+                      <div style="font-size:11px;color:var(--text-muted)">${l.steps.length} steps · +${l.xpReward} XP</div>
+                    </div>
+                  </div>
+                </div>`;
+            }).join('') : '';
+            const objectivesHtml = mod.objectives && isOpen ? `
+                <div class="module-objectives-wrap">
+                    <div class="module-objectives-label">Learning objectives</div>
+                    <ul class="module-objectives">
+                        ${mod.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                    </ul>
+                </div>` : '';
+            const storylineHtml = mod.storyline && isOpen ? `<p class="module-storyline">${mod.storyline}</p>` : '';
             return `
-            <div class="module-card ${modComplete ? 'completed' : ''} ${isLocked ? 'locked' : ''}" onclick="${isLocked ? '' : `toggleModule(${mi}, this)`}" style="cursor:${isLocked ? 'not-allowed' : 'pointer'};opacity:${isLocked ? '0.5' : '1'}">
+            <div class="module-card ${modComplete ? 'completed' : ''} ${isLocked ? 'locked' : ''} ${isCurrentModule || isStartHere ? 'active' : ''}" onclick="${isLocked ? '' : `toggleModule(${mi})`}" style="cursor:${isLocked ? 'not-allowed' : 'pointer'};opacity:${isLocked ? '0.5' : '1'}">
               <div style="display:flex;align-items:center;gap:16px">
                 <div style="font-size:36px;flex-shrink:0">${mod.icon}</div>
                 <div style="flex:1;min-width:0">
@@ -535,61 +653,30 @@ get_clean_globals()
                     <span style="font-size:16px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em">${mod.title}</span>
                     <span class="badge badge-${mod.badge}">${mod.badge}</span>
                     ${modComplete ? '<span class="badge badge-completed">✓ Complete</span>' : ''}
-                    ${isStartHere ? '<span class="badge badge-completed" style="background:rgba(59,130,246,0.12);color:#7dd3fc;border-color:rgba(125,211,252,0.35)">Start here</span>' : ''}
+                    ${isStartHere ? '<span class="badge badge-completed" style="background:rgba(59,130,246,0.12);color:#7dd3fc;border-color:rgba(125,211,252,0.35)">Next up</span>' : ''}
+                    ${isCurrentModule ? '<span class="badge badge-completed" style="background:rgba(16,185,129,0.12);color:#34d399;border-color:rgba(52,211,153,0.35)">Current</span>' : ''}
                     ${isLocked ? '<span style="font-size:12px;color:var(--text-muted)">🔒</span>' : ''}
                   </div>
                   <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;line-height:1.5">${mod.description}</p>
-                  <div style="display:flex;align-items:center;gap:10px">
+                  ${storylineHtml}
+                  ${objectivesHtml}
+                  <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
                     <div class="progress-bar" style="flex:1;max-width:180px"><div class="progress-fill" style="width:${Math.round((modCompletedCount / modLessonCount) * 100)}%"></div></div>
                     <span style="font-size:11px;color:var(--text-muted);font-weight:600">${modCompletedCount}/${modLessonCount} lessons</span>
                   </div>
                 </div>
-                <i class="ti ti-chevron-down" style="color:var(--text-muted);font-size:18px;flex-shrink:0;transition:transform .3s" id="chevron-${mi}"></i>
+                <i class="ti ti-chevron-down" style="color:var(--text-muted);font-size:18px;flex-shrink:0;transition:transform .3s;transform:${isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}" id="chevron-${mi}"></i>
               </div>
-              <div id="module-lessons-${mi}" style="display:none;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);flex-direction:column;gap:8px"></div>
+              <div id="module-lessons-${mi}" style="display:${isOpen ? 'flex' : 'none'};margin-top:16px;padding-top:14px;border-top:1px solid var(--border);flex-direction:column;gap:8px">${lessonsHtml}</div>
             </div>`;
         }).join('');
         document.getElementById('modules-list').innerHTML = html;
     }
 
-    function toggleModule(mi, el) {
-        const container = document.getElementById('module-lessons-' + mi);
-        const chevron = document.getElementById('chevron-' + mi);
-        const isOpen = container.style.display !== 'none' && container.innerHTML !== '';
-
-        if (isOpen) {
-            container.style.display = 'none';
-            if (chevron) chevron.style.transform = 'rotate(0deg)';
-            return;
-        }
-
-        const completed = users[currentUser?.email]?.completed || [];
-        const modStartIdx = MODULES.slice(0, mi).reduce((acc, m) => acc + m.lessons.length, 0);
-        const mod = MODULES[mi];
-
-        container.innerHTML = mod.lessons.map((l, li) => {
-            const globalLi = modStartIdx + li;
-            const isComp = completed.includes(globalLi);
-            const prevCompleted = li === 0 || completed.includes(globalLi - 1) || isComp;
-            const locked = !prevCompleted && !isComp;
-            return `
-            <div class="lesson-card ${isComp ? 'completed' : ''} ${locked ? 'locked' : ''}" onclick="${locked ? '' : `startLesson(${globalLi})`}" style="cursor:${locked ? 'not-allowed' : 'pointer'}">
-              <div style="display:flex;align-items:center;gap:12px">
-                <div style="font-size:22px;flex-shrink:0">${l.icon}</div>
-                <div style="flex:1;min-width:0">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px">
-                    <span style="font-size:13px;font-weight:700;color:var(--text-primary)">${l.title}</span>
-                    <span class="badge badge-${l.badge}">${l.badge}</span>
-                    ${isComp ? '<span style="color:var(--accent);font-size:12px;font-weight:600">✓</span>' : ''}
-                    ${locked ? '<span style="font-size:11px;color:var(--text-muted)">🔒</span>' : ''}
-                  </div>
-                  <div style="font-size:11px;color:var(--text-muted)">${l.steps.length} steps · +${l.xpReward} XP</div>
-                </div>
-              </div>
-            </div>`;
-        }).join('');
-        container.style.display = 'flex';
-        if (chevron) chevron.style.transform = 'rotate(180deg)';
+    function toggleModule(mi) {
+        expandedModuleIdx = expandedModuleIdx === mi ? null : mi;
+        saveCourseState();
+        renderModules();
     }
 
     /* ==========================================
@@ -730,21 +817,46 @@ get_clean_globals()
             `<button class="btn-outline" onclick="startLesson(${nextGlobal})">Next Lesson →</button>` :
             `<button class="btn" onclick="goBack()">🎓 View Curriculum</button>`;
 
+        const courseComplete = completed.length >= ALL_LESSONS.length;
+        const courseSummary = courseComplete ? `
+            <div class="course-complete-banner" style="margin-top:26px;">
+                <div style="font-size:36px;margin-bottom:8px">🏆</div>
+                <h3 style="font-size:22px;font-weight:800;color:var(--text-primary);margin:0 0 8px;letter-spacing:-0.02em">Course Complete</h3>
+                <p style="color:var(--text-secondary);margin:0 0 18px;line-height:1.6">You finished the full Python journey — from first print() to backend thinking and final portfolio-ready project work.</p>
+                <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+                    <button class="btn" onclick="goBack()">Review Curriculum</button>
+                    <button class="btn-outline" onclick="showDashTab('achievements')">See Achievements</button>
+                </div>
+            </div>` : '';
+
         document.getElementById('lesson-content').innerHTML = `
           <div class="complete-screen">
-            <div class="confetti">🎉</div>
-            <h2 style="font-size:26px;font-weight:800;color:var(--text-primary);margin-bottom:10px;letter-spacing:-0.03em">Lesson Complete!</h2>
+            <div class="confetti">${courseComplete ? '🎉' : '✨'}</div>
+            <h2 style="font-size:26px;font-weight:800;color:var(--text-primary);margin-bottom:10px;letter-spacing:-0.03em">${courseComplete ? 'Path Complete!' : 'Lesson Complete!'}</h2>
             <p style="color:var(--text-muted);font-size:15px;margin-bottom:8px">You earned</p>
             <div style="font-size:40px;font-weight:800;color:var(--accent);margin-bottom:24px">+${earned} XP</div>
-            <p style="color:var(--text-secondary);margin-bottom:30px;line-height:1.6">Excellent work finishing <strong>${lesson.title}</strong>!<br>Keep up the momentum.</p>
+            <p style="color:var(--text-secondary);margin-bottom:30px;line-height:1.6">${courseComplete ? 'You finished the entire course and built a full learning arc from beginner Python to real-world systems thinking.' : `Excellent work finishing <strong>${lesson.title}</strong>!<br>Keep up the momentum.`}</p>
             <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
               <button class="btn-outline" onclick="goBack()">← Back to Curriculum</button>
               ${nextBtn}
             </div>
+            ${courseSummary}
           </div>`;
         updateXPDisplay();
-        if (completed.length >= ALL_LESSONS.length) {
+        if (courseComplete) {
             setTimeout(() => showToast('👑 Congratulations! You completed the entire Python curriculum!'), 500);
+            if (document.getElementById('onboarding-banner')) {
+                const banner = document.getElementById('onboarding-banner');
+                banner.style.display = 'flex';
+                banner.innerHTML = `
+                    <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;flex-wrap:wrap;">
+                        <div>
+                            <div style="font-size:12px;font-weight:800;color:#7dd3fc;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Course milestone</div>
+                            <div style="font-size:15px;font-weight:700;color:var(--text-primary)">You completed the full learning path. Great work.</div>
+                        </div>
+                        <button class="btn btn-sm" onclick="showDashTab('achievements')">View achievements</button>
+                    </div>`;
+            }
         }
     }
 
@@ -1027,6 +1139,7 @@ get_clean_globals()
         showDashTab,
         switchPath,
         toggleModule,
+        focusFirstModule,
         startLesson,
         goBack,
         nextStep,
@@ -1066,6 +1179,9 @@ get_clean_globals()
             };
             restoreCourseState();
             enterCourse();
+            if (currentScreen === 'dashboard') {
+                showDashTab(currentDashboardTab);
+            }
             if (currentScreen === 'lesson') {
                 const mapped = GLOBAL_LESSON_MAP[currentLessonIdx];
                 if (mapped) {

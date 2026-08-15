@@ -5,7 +5,13 @@ export const PATH_DATA = {
             title: '1. Foundations',
             icon: '🧱',
             badge: 'Basics',
-            description: 'Master the building blocks of Python: variables, types, and printing.',
+            description: 'Build the language fluency that everything else depends on: output, variables, text, and confident first steps in Python.',
+            storyline: 'This chapter is where the learner stops being a spectator and starts speaking the language of code. The goal is not memorization — it is accurate thinking, clear syntax, and a strong first foundation.',
+            objectives: [
+                'Write and run basic Python programs with confidence.',
+                'Understand variables, strings, comments, and output formatting.',
+                'Use Python as a tool for quick experimentation and problem solving.'
+            ],
             lessons: [
                 {
                     title: 'Hello, Python!',
@@ -23,8 +29,12 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">A Python program is like a robot that follows instructions. When you want it to say something, you use the <strong>print()</strong> function.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world Context:</strong> When developers test code, they often use <strong>print()</strong> to show messages and check what a program is doing.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     <span class="code-builtin">print</span>(<span class="code-string">"Hello, Python!"</span>)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> <code>print()</code> displays text or values, <code>input()</code> asks the user for information, and <code>type()</code> tells you the data type of a value.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/functions.html#print" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">print()</a> · <a href="https://docs.python.org/3/library/functions.html#input" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">input()</a> · <a href="https://docs.python.org/3/library/functions.html#type" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">type()</a></p>
                                 </div>
                             `
                         },
@@ -105,11 +115,15 @@ export const PATH_DATA = {
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Building Words</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">Strings are like Lego bricks made of letters. You can snap them together to build a message, a name, or a sentence.</p>
                                 </div>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     first = <span class="code-string">"Ada"</span><br>
                                     last = <span class="code-string">"Lovelace"</span><br>
                                     full = first + <span class="code-string">" "</span> + last<br>
                                     <span class="code-builtin">print</span>(full)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> strings are wrapped in quotes, and the <code>+</code> operator joins them together. You can also use <code>len()</code> to count characters.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">str</a> · <a href="https://docs.python.org/3/library/functions.html#len" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">len()</a> · <a href="https://docs.python.org/3/tutorial/introduction.html#strings" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python strings tutorial</a></p>
                                 </div>
                             `
                         },
@@ -149,12 +163,16 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">Imagine a dresser with drawers. You put your "socks" in one drawer and label it. When you need socks, you don't look everywhere; you just go to the drawer labeled "socks".</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world Context:</strong> Every time you log into an app, your username is stored in a variable so the app can greet you.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     <span class="code-comment"># Storing a string (text)</span><br>
                                     name = <span class="code-string">"Alice"</span><br>
                                     <span class="code-comment"># Storing an integer (number)</span><br>
                                     age = <span class="code-number">25</span><br>
                                     <span class="code-builtin">print</span>(name)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> variables hold values using the assignment operator <code>=</code>. Good names are clear and descriptive, like <code>user_name</code> or <code>total_cost</code>.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/typing.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python typing overview</a> · <a href="https://docs.python.org/3/reference/simple_stmts.html#assignment-statements" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">assignment statements</a> · <a href="https://peps.python.org/pep-0008/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">PEP 8 naming guide</a></p>
                                 </div>
                             `
                         },
@@ -236,9 +254,59 @@ export const PATH_DATA = {
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Digital abacus</p>
                                     <p style="font-size:14px;color:var(--text-secondary)">Think of operators as buttons on a futuristic calculator that can handle millions of operations per second.</p>
                                 </div>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     total = <span class="code-number">10</span> + <span class="code-number">5</span> * <span class="code-number">2</span><br>
                                     <span class="code-builtin">print</span>(total) <span class="code-comment"># Output is 20</span>
+                                </div>
+                                <div style="margin-bottom:18px;display:flex;flex-direction:column;gap:10px">
+                                    <h3 style="font-size:16px;font-weight:800;color:var(--text-primary);margin:8px 0 0">Arithmetic operators</h3>
+                                    <div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--bg-card)">
+                                        <table style="width:100%;border-collapse:collapse;font-size:13px">
+                                            <thead>
+                                                <tr style="background:var(--bg-secondary)">
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Operator</th>
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Meaning</th>
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>+</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Addition — add two numbers together.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">5 + 3 → 8</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>-</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Subtraction — take one number away from another.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">9 - 4 → 5</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>*</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Multiplication — repeat a number several times.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">6 * 3 → 18</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>/</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Division — split into equal parts. Result may be a float.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">10 / 2 → 5.0</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>//</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Floor division — divide and round down to the nearest whole number.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">13 // 5 → 2</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>%</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Modulo — gives the remainder after division.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">10 % 3 → 1</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>**</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Exponentiation — raise a number to a power.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">2 ** 5 → 32</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom:18px;display:flex;flex-direction:column;gap:10px">
+                                    <h3 style="font-size:16px;font-weight:800;color:var(--text-primary);margin:8px 0 0">Comparison and assignment operators</h3>
+                                    <div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--bg-card)">
+                                        <table style="width:100%;border-collapse:collapse;font-size:13px">
+                                            <thead>
+                                                <tr style="background:var(--bg-secondary)">
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Operator</th>
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Meaning</th>
+                                                    <th style="padding:10px 12px;text-align:left;color:var(--text-primary)">Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>=</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Assignment — store a value into a variable.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">x = 10</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>==</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Equality — check if two values are the same.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">5 == 5 → True</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>!=</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Not equal — check if two values are different.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">5 != 3 → True</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>&gt;</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Greater than — left value is bigger.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">7 &gt; 5 → True</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>&lt;</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Less than — left value is smaller.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">3 &lt; 8 → True</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>&gt;=</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Greater than or equal to.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">10 &gt;= 10 → True</td></tr>
+                                                <tr><td style="padding:10px 12px;border-top:1px solid var(--border)"><strong>&lt;=</strong></td><td style="padding:10px 12px;border-top:1px solid var(--border)">Less than or equal to.</td><td style="padding:10px 12px;border-top:1px solid var(--border)">4 &lt;= 4 → True</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.7"><strong>Quick tip:</strong> Python follows operator precedence, so multiplication and division happen before addition and subtraction. That’s why <strong>10 + 5 * 2</strong> becomes <strong>20</strong>, not <strong>30</strong>.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">For more examples and the official reference, visit <a href="https://docs.python.org/3/library/stdtypes.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python operator documentation</a> and <a href="https://docs.python.org/3/reference/expressions.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python expression reference</a>.</p>
                                 </div>
                             `
                         },
@@ -503,11 +571,11 @@ export const PATH_DATA = {
                         {
                             type: 'lesson',
                             content: `
-                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Final Capstone: Your Intro Card 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A capstone brings together everything you’ve learned so far: output, variables, strings, input, and formatting.</p>
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Final Capstone: Your First Developer Identity 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Chapter goal:</strong> This capstone turns your early lessons into a coherent personal profile. You are not just printing text — you are building a small, polished product that reflects who you are as a learner.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
-                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Your Personal Profile</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">Imagine you are creating a tiny profile for a coding app. It introduces you, says what you like, and prints a friendly message.</p>
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: Your Professional Intro</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A great developer profile is more than a statement. It communicates identity, taste, and clarity. In this capstone, you create the first version of that story in code.</p>
                                 </div>
                                 <div class="code-block">
                                     name = <span class="code-string">"Sam"</span><br>
@@ -537,7 +605,13 @@ export const PATH_DATA = {
             title: '2. Control Flow',
             icon: '🔀',
             badge: 'Logic',
-            description: 'Learn to steer your programs with decisions, repetition, and safe error handling.',
+            description: 'Move from static instructions to executable logic: decisions, repetition, and the rules that make programs behave intelligently.',
+            storyline: 'This chapter turns code from a sequence into a system. The learner begins to model real logic: what to do when conditions are met, when to repeat actions, and when to stop.',
+            objectives: [
+                'Use conditions to make smart decisions in code.',
+                'Apply loops to automate repetition and reduce manual work.',
+                'Control flow with confidence in real-world task automation.'
+            ],
             lessons: [
                 {
                     title: 'The Crossroads',
@@ -555,12 +629,16 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">A program is like a traveler at a fork in the road. The condition tells it which road to take: one path for "yes" and another for "no".</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Websites check whether a password is valid, games check whether a player has enough points, and apps decide whether to show a login page or a dashboard.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     age = <span class="code-number">18</span><br>
                                     <span class="code-keyword">if</span> age >= <span class="code-number">18</span>:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Adult"</span>)<br>
                                     <span class="code-keyword">else</span>:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Minor"</span>)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> use <code>if</code> for a single condition, <code>elif</code> for extra checks, and <code>else</code> for the fallback case. Comparisons like <code>==</code>, <code>&gt;=</code>, and <code>!=</code> decide which path runs.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/tutorial/controlflow.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">control flow tutorial</a> · <a href="https://docs.python.org/3/reference/compound_stmts.html#if" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">if statement</a> · <a href="https://docs.python.org/3/library/stdtypes.html#comparisons" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">comparisons</a></p>
                                 </div>
                             `
                         },
@@ -729,11 +807,15 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">When something goes wrong, the safety net catches the fall. In code, the <code>except</code> block catches the error and tells the user what happened.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Apps often handle missing files, invalid input, and network errors without crashing. That is why error handling is a core beginner skill.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     <span class="code-keyword">try</span>:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;result = <span class="code-number">10</span> / <span class="code-number">0</span><br>
                                     <span class="code-keyword">except</span> ZeroDivisionError:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">"Can't divide by zero!"</span>)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> use <code>try</code> around code that may fail, then catch specific exceptions such as <code>ValueError</code>, <code>TypeError</code>, or <code>ZeroDivisionError</code> in the <code>except</code> block.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/tutorial/errors.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python errors guide</a> · <a href="https://docs.python.org/3/library/exceptions.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">built-in exceptions</a> · <a href="https://realpython.com/python-exceptions/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">exception handling</a></p>
                                 </div>
                             `
                         },
@@ -802,7 +884,13 @@ export const PATH_DATA = {
             title: '3. Data Structures',
             icon: '📚',
             badge: 'Organization',
-            description: 'Organize information with lists, dictionaries, sets, and tuples so your programs can model real-world data cleanly.',
+            description: 'Organize real-world information into structured, searchable collections so your programs can model people, records, and systems intelligently.',
+            storyline: 'This chapter is about data design. Once code can think, it also needs a way to store and retrieve information cleanly. Lists, dictionaries, and sets become the core architecture of realistic software.',
+            objectives: [
+                'Store and retrieve data using lists, dictionaries, and sets.',
+                'Choose the right structure for a given problem.',
+                'Build cleaner, more maintainable data models for applications.'
+            ],
             lessons: [
                 {
                     title: 'The Shopping List',
@@ -820,10 +908,14 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">A list is like a train with cars in a fixed order. You can add a car, remove a car, or pick a specific car by position.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Lists are used for shopping carts, task lists, scores, game inventory, and any ordered information.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     groceries = [<span class="code-string">"milk"</span>, <span class="code-string">"eggs"</span>, <span class="code-string">"bread"</span>]<br>
                                     <span class="code-builtin">print</span>(groceries[<span class="code-number">0</span>])<br>
                                     groceries.append(<span class="code-string">"bananas"</span>)
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> lists are ordered collections; you can index them with <code>[0]</code>, append new items, and iterate through them with loops. tuples are similar but immutable, while sets remove duplicates.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/stdtypes.html#common-sequence-operations" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">sequence operations</a> · <a href="https://docs.python.org/3/library/stdtypes.html#dict" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">dict</a> · <a href="https://docs.python.org/3/library/stdtypes.html#set" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">set</a></p>
                                 </div>
                             `
                         },
@@ -863,9 +955,13 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">A dictionary is like a locker system: the key is the locker number, and the value is what's inside it. You don't need to search through everything.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🌍 <strong>Real-world use:</strong> Dictionaries are used for user profiles, settings, server responses, and mapping names to values.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     user = {<span class="code-string">"name"</span>: <span class="code-string">"Bob"</span>, <span class="code-string">"id"</span>: <span class="code-number">42</span>}<br>
                                     <span class="code-builtin">print</span>(user[<span class="code-string">"name"</span>])
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> dictionaries map keys to values, so you can look up a user by name or ID instead of by index. This is ideal for settings, records, and API responses.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/stdtypes.html#dict" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">dict docs</a> · <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">dict tutorial</a> · <a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">dictionary examples</a></p>
                                 </div>
                             `
                         },
@@ -965,6 +1061,43 @@ export const PATH_DATA = {
                             correct: 1
                         }
                     ]
+                },
+                {
+                    title: 'The Search Engine',
+                    badge: 'Structures',
+                    icon: '🔎',
+                    xpReward: 180,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Indexing, Lookup, and Filtering 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Once you can store data, the next step is finding the right piece quickly. Lists and dictionaries are designed for lookup, slicing, and filtering patterns.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Library Catalog</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Lists are like shelves in order, while dictionaries are like a card catalog where you look up a title by name. Good data design means predictably finding the right item.</p>
+                                </div>
+                                <div class="code-block">
+                                    scores = [<span class="code-number">90</span>, <span class="code-number">80</span>, <span class="code-number">95</span>]<br>
+                                    student = {<span class="code-string">"name"</span>: <span class="code-string">"Ava"</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>}<br>
+                                    <span class="code-builtin">print</span>(scores[<span class="code-number">1</span>])<br>
+                                    <span class="code-builtin">print</span>(student[<span class="code-string">"name"</span>])
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a list <strong>scores</strong> with <strong>90</strong>, <strong>80</strong>, and <strong>95</strong>. Then print the second value in the list.',
+                            starter: 'scores = [90, 80, 95]\nprint(scores[1])\n',
+                            expected: '80'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which data structure is best for lookup by a meaningful key name?',
+                            options: ['List', 'Tuple', 'Dictionary', 'Set'],
+                            correct: 2
+                        }
+                    ]
                 }
             ]
         },
@@ -973,7 +1106,13 @@ export const PATH_DATA = {
             title: '4. OOP',
             icon: '🏗️',
             badge: 'Architect',
-            description: 'Scale your thinking from scripts to systems by modeling real-world ideas with classes, objects, and inheritance.',
+            description: 'Design reusable, maintainable systems by modeling real-world concepts with classes, objects, and inheritance.',
+            storyline: 'This chapter introduces the mental model used in large software systems: objects, responsibilities, and reusable structure. The learner moves from writing scripts to arranging systems.',
+            objectives: [
+                'Design classes that model real entities and behavior.',
+                'Understand objects, methods, and inheritance.',
+                'Build applications using modular, reusable object design.'
+            ],
             lessons: [
                 {
                     title: 'The Blueprint',
@@ -991,10 +1130,14 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">The class is the cutter. The objects are the individual cookies. They all have the same shape, but can have different toppings, sizes, or flavors.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">💡 In OOP, we usually separate data (attributes) from behavior (methods). A <code>Car</code> has attributes like color and speed, and methods like drive() or brake().</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     <span class="code-keyword">class</span> <span class="code-builtin">Car</span>:<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-builtin">__init__</span>(self, color):<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.color = color
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> classes define blueprints, objects are instances of those blueprints, and methods describe behavior. Use <code>self</code> to refer to the current instance and <code>__init__</code> to set its starting values.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/tutorial/classes.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Python classes tutorial</a> · <a href="https://docs.python.org/3/reference/datamodel.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">object model</a> · <a href="https://realpython.com/python3-object-oriented-programming/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">OOP guide</a></p>
                                 </div>
                             `
                         },
@@ -1100,15 +1243,59 @@ export const PATH_DATA = {
                             correct: 0
                         }
                     ]
+                },
+                {
+                    title: 'Object Collaboration',
+                    badge: 'Architect',
+                    icon: '🤝',
+                    xpReward: 220,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Composition & Methods 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Real systems are built from objects that interact with one another. One object can hold another object, pass data between them, and share responsibilities cleanly.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Team</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A project manager is not the entire company; they coordinate many specialists. Objects work the same way, sharing responsibility instead of trying to do everything alone.</p>
+                                </div>
+                                <div class="code-block">
+                                    <span class="code-keyword">class</span> <span class="code-builtin">User</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-builtin">__init__</span>(self, name):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-builtin">greet</span>(self):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-builtin">print</span>(<span class="code-string">f"Hi, {self.name}"</span>)
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Create a class <strong>User</strong> with a method <strong>greet</strong> that prints <strong>Hi, Ava</strong> when the name is <strong>Ava</strong>.',
+                            starter: 'class User:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        print(f"Hi, {self.name}")\n\nUser("Ava").greet()\n',
+                            expected: 'Hi, Ava'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is composition in OOP?',
+                            options: ['A class using another object as part of its design', 'A way to avoid all methods', 'A loop in a class', 'A special string format'],
+                            correct: 0
+                        }
+                    ]
                 }
             ]
         },
         {
             id: 'toolkit',
-            title: '5. Prof Toolkit',
+            title: '5. Proof Toolkit',
             icon: '🛠️',
             badge: 'Pro',
-            description: 'Build like a real developer by learning environments, packages, testing, and the habits that keep Python projects reliable.',
+            description: 'Learn the engineering habits that separate working scripts from reliable software: tooling, dependency control, testing, and debugging discipline.',
+            storyline: 'This chapter is where the learner starts thinking like a professional engineer. Good code is not just functional — it is repeatable, debuggable, and verifiable under pressure.',
+            objectives: [
+                'Use virtual environments and package management effectively.',
+                'Test and validate code with assertions and logging.',
+                'Debug systematically and build repeatable engineering habits.'
+            ],
             lessons: [
                 {
                     title: 'The Virtual Bubble',
@@ -1126,9 +1313,13 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">Each project is a different experiment. You would never mix chemicals from one lab into another. Virtual environments keep experiments separate.</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🧠 If you work on multiple Python projects, the packages installed globally may conflict. A venv gives each project its own clean environment.</p>
-                                <div class="code-block">
+                                <div class="code-block" style="margin-bottom:18px">
                                     python -m venv .venv<br>
                                     source .venv/bin/activate
+                                </div>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> virtual environments isolate dependencies per project, which prevents package version conflicts. Use <code>python -m venv .venv</code> to create one, then activate it before installing packages.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://docs.python.org/3/library/venv.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">venv docs</a> · <a href="https://pip.pypa.io/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">pip docs</a> · <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">packaging guide</a></p>
                                 </div>
                             `
                         },
@@ -1231,6 +1422,38 @@ export const PATH_DATA = {
                             correct: 1
                         }
                     ]
+                },
+                {
+                    title: 'The Debugging Briefcase',
+                    badge: 'Pro',
+                    icon: '🧰',
+                    xpReward: 200,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Debugging & Reproducible Fixes 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Professional developers do not guess. They reproduce the issue, isolate the failure, and verify the fix with a clear test or check.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Detective Notebook</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A bug is a clue. You write down the evidence, look for the contradiction, and then test one explanation at a time until the mystery resolves.</p>
+                                </div>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🔎 The best debugging workflow is: reproduce, inspect, test, fix, verify. This keeps feedback loops short and reliable.</p>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Use <strong>print</strong> to show the value of a variable named <strong>x</strong> before a bug fix. ',
+                            starter: 'x = 7\nprint(x)\n',
+                            expected: '7'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What is the most important first step in debugging?',
+                            options: ['Delete the file', 'Reproduce the issue', 'Install more packages', 'Rewrite the whole program'],
+                            correct: 1
+                        }
+                    ]
                 }
             ]
         },
@@ -1239,7 +1462,13 @@ export const PATH_DATA = {
             title: '6. Web & APIs',
             icon: '🌐',
             badge: 'Network',
-            description: 'Connect your Python skills to the outside world by working with HTTP, JSON, and data from real services.',
+            description: 'Connect Python to the real world through HTTP, JSON, and the APIs that power modern products, systems, and services.',
+            storyline: 'This chapter introduces the internet as a system of connected services. The learner moves from local logic to networked products and begins to think in terms of requests, responses, and data exchange.',
+            objectives: [
+                'Understand HTTP requests and responses.',
+                'Work with JSON and external APIs in Python.',
+                'Build software that communicates with other systems.'
+            ],
             lessons: [
                 {
                     title: 'The Digital Handshake',
@@ -1257,6 +1486,10 @@ export const PATH_DATA = {
                                     <p style="font-size:14px;color:var(--text-secondary)">You call (Request). You give details (Payload). The shop says "OK" (Status Code 200) and brings the pizza (Data).</p>
                                 </div>
                                 <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📡 Common HTTP methods include GET, POST, PUT, and DELETE. GET asks for information; POST creates it; PUT updates it; DELETE removes it.</p>
+                                <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg, rgba(59,130,246,0.08), rgba(168,85,247,0.08));border:1px solid var(--border-subtle)">
+                                    <p style="font-size:14px;color:var(--text-secondary);margin:0 0 8px;line-height:1.6"><strong>Quick reference:</strong> a request goes to a URL, the server responds with a status code and data, and the client decides what to do with that response. Common status codes are <code>200</code> for success, <code>404</code> for not found, and <code>500</code> for server problems.</p>
+                                    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.6">Learn more: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">HTTP overview</a> · <a href="https://requests.readthedocs.io/en/latest/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">requests library</a> · <a href="https://www.json.org/json-en.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">JSON spec</a></p>
+                                </div>
                             `
                         },
                         {
@@ -1357,6 +1590,43 @@ export const PATH_DATA = {
                             correct: 0
                         }
                     ]
+                },
+                {
+                    title: 'REST Patterns',
+                    badge: 'Web',
+                    icon: '🧭',
+                    xpReward: 240,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">RESTful Design 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> REST APIs organize endpoints around resources. A user, a post, or a task each gets a predictable URL and one or more standard request methods.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Restaurant Menu</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Each menu item is a resource, and the waiter uses different actions to read, create, update, or delete it. The pattern stays predictable and familiar.</p>
+                                </div>
+                                <div class="code-block">
+                                    GET /users<br>
+                                    POST /users<br>
+                                    PUT /users/1<br>
+                                    DELETE /users/1
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Print the HTTP method most often used to create a new resource.',
+                            starter: '',
+                            expected: 'POST'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'What does a RESTful API usually model?',
+                            options: ['Only files on disk', 'Resources and actions around them', 'Only CSS rules', 'Only loops in Python'],
+                            correct: 1
+                        }
+                    ]
                 }
             ]
         },
@@ -1365,7 +1635,7 @@ export const PATH_DATA = {
             title: '7. Backend & DB',
             icon: '💾',
             badge: 'Data',
-            description: 'Learn how software stores information persistently so apps can remember users, data, and state over time.',
+            description: 'Learn how applications remember data over time so your programs can store users, records, and evolving state.',
             lessons: [
                 {
                     title: 'The Server Waiter',
@@ -1459,6 +1729,43 @@ export const PATH_DATA = {
                             correct: 1
                         }
                     ]
+                },
+                {
+                    title: 'The Data Pipeline',
+                    badge: 'Backend',
+                    icon: '🔄',
+                    xpReward: 260,
+                    steps: [
+                        {
+                            type: 'lesson',
+                            content: `
+                                <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">CRUD & Application Flow 💡</h2>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> The job of a backend is usually to Create, Read, Update, and Delete data. These four actions form the backbone of most app logic.</p>
+                                <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
+                                    <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Library Desk</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">A librarian can add a book, check a book out, update a record, or remove a damaged copy. Backend code performs the same actions for data.</p>
+                                </div>
+                                <div class="code-block">
+                                    POST /items        <span class="code-comment"># Create</span><br>
+                                    GET /items        <span class="code-comment"># Read</span><br>
+                                    PUT /items/1      <span class="code-comment"># Update</span><br>
+                                    DELETE /items/1   <span class="code-comment"># Delete</span>
+                                </div>
+                            `
+                        },
+                        {
+                            type: 'code',
+                            instruction: 'Print the CRUD action that means "read" a resource from the database.',
+                            starter: '',
+                            expected: 'Read'
+                        },
+                        {
+                            type: 'quiz',
+                            question: 'Which action is not part of CRUD?',
+                            options: ['Create', 'Read', 'Deploy', 'Delete'],
+                            correct: 2
+                        }
+                    ]
                 }
             ]
         },
@@ -1467,7 +1774,7 @@ export const PATH_DATA = {
             title: '8. Deployment',
             icon: '🚀',
             badge: 'Ops',
-            description: 'Ship your work beyond your machine and learn how code moves from development into the real world.',
+            description: 'Take your code from the local machine to the real world by learning deployment, automation, and cloud hosting.',
             lessons: [
                 {
                     title: 'The Shipping Container',
@@ -1569,7 +1876,7 @@ export const PATH_DATA = {
             title: '9. Advanced Idioms',
             icon: '🪄',
             badge: 'Expert',
-            description: 'Move beyond the basics and learn the Python patterns that make experienced engineers write cleaner, more powerful code.',
+            description: 'Refine your Python with the patterns that experienced engineers use to write cleaner, smarter, and more powerful code.',
             lessons: [
                 {
                     title: 'Function Wrappers',
@@ -1671,7 +1978,7 @@ export const PATH_DATA = {
             title: '10. Final Project',
             icon: '🚀',
             badge: 'Portfolio',
-            description: 'Bring the whole journey together in a polished project that demonstrates how your Python skills fit as one complete story.',
+            description: 'Bring the whole story together in a polished product that shows how your Python skills work as one complete system.',
             lessons: [
                 {
                     title: 'Design the App',
@@ -1683,12 +1990,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Project Planning 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Real developers do not code randomly. They define the problem, sketch the features, and plan data flow before writing the first line of code.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> This is the payoff moment of the whole course. You are no longer learning isolated syntax — you are designing a real product that solves a problem for a real person.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Blueprint</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">Before building a house, you design the rooms, the doors, and the flow. The same should happen with your app.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">Before building a house, you design the rooms, the doors, and the flow. The same should happen with your app. This final project is your way of turning everything you have learned into one coherent system.</p>
                                 </div>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🎯 A strong final project might be a study planner, a quiz app, a budget tracker, or a small command-line assistant. The goal is not complexity — it is clarity and usefulness.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">🎯 Your final build is a <strong>study planner</strong> app that tracks goals, tasks, and progress. It brings together variables, loops, data structures, functions, and user-facing logic into a focused workflow that feels authentic.</p>
                             `
                         },
                         {
@@ -1715,12 +2022,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Core Development 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A final project should combine variables, conditions, loops, functions, and data structures into one coherent workflow.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> Your planner should combine variables, conditions, loops, functions, and data structures into one coherent workflow so it does more than just print messages — it solves a real problem.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Engine Room</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">The app is an engine: functions are components, data structures are fuel, and control flow is how the whole system moves.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">The app is an engine: functions are components, data structures are fuel, and control flow is how the whole system moves. Your planner should feel like a working tool, not a toy script.</p>
                                 </div>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">✅ Good projects often include a menu, repeated actions, simple storage, and clear user feedback such as print statements or status messages.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">✅ Good projects often include a menu, repeated actions, simple storage, and clear user feedback such as print statements or status messages. The real goal is building something that makes a routine easier and more structured.</p>
                             `
                         },
                         {
@@ -1747,12 +2054,12 @@ export const PATH_DATA = {
                             type: 'lesson',
                             content: `
                                 <h2 style="font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:12px">Presentation & Polish 💡</h2>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A finished project is not only functional; it is clear, tested, and understandable. Great developers polish the user experience and explain their thinking.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7"><strong>Big Idea:</strong> A finished project is not only functional; it is clear, tested, and understandable. Great developers polish the experience and explain their thinking so the app feels intentional, not accidental.</p>
                                 <div style="background:var(--bg-secondary);padding:16px;border-radius:12px;margin-bottom:16px;border:1px solid var(--border-subtle)">
                                     <p style="font-weight:700;margin-bottom:6px">🖼️ Visual Metaphor: The Showcase Stage</p>
-                                    <p style="font-size:14px;color:var(--text-secondary)">The code is the backstage work. The presentation is the bright lights that let people understand what your app does and why it matters.</p>
+                                    <p style="font-size:14px;color:var(--text-secondary)">The code is the backstage work. The presentation is the bright lights that let people understand what your app does and why it matters. This is where your coursework becomes a portfolio story.</p>
                                 </div>
-                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📌 Good project reflections include what the app does, what problem it solves, and what you learned while building it.</p>
+                                <p style="color:var(--text-secondary);margin-bottom:16px;line-height:1.7">📌 Good project reflections include what the app does, what problem it solves, and what you learned while building it. A polished final project tells a story of growth from “I can print a message” to “I can ship a useful system.”</p>
                             `
                         },
                         {
